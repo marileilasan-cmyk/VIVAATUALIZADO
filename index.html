@@ -1190,6 +1190,40 @@
  #etapa2:has(#areaPIX[style*="block"]) #btnGerarPIX{display:none!important}
 }
 </style>
+<style id="pix-whatsapp-separated-mobile">
+/* Depois de gerar o PIX, o formulário desaparece e a tela ocupa o espaço disponível. */
+#etapa2:has(#areaPIX[style*="block"]) #whatsappStep{display:none!important}
+#etapa2:has(#areaPIX[style*="block"]) #btnGerarPIX{display:none!important}
+#etapa2:has(#areaPIX[style*="block"]) .modal-body{padding-top:2px!important}
+#etapa2:has(#areaPIX[style*="block"]) .progresso-etapas{margin-bottom:8px!important}
+#etapa2:has(#areaPIX[style*="block"]) .pix-payment-heading{padding:11px 14px!important;margin-bottom:9px!important;font-size:19px!important}
+#etapa2:has(#areaPIX[style*="block"]) .pix-payment-value{padding:10px!important;font-size:13px!important}
+#etapa2:has(#areaPIX[style*="block"]) .pix-payment-brand{margin:10px 0 5px!important;font-size:35px!important}
+#etapa2:has(#areaPIX[style*="block"]) .pix-payment-brand img{width:40px!important;height:40px!important}
+#etapa2:has(#areaPIX[style*="block"]) .pix-instructions{margin:5px 0 9px!important;font-size:13px!important}
+#etapa2:has(#areaPIX[style*="block"]) .codigo-pix input{padding:11px!important}
+#etapa2:has(#areaPIX[style*="block"]) .pix-copy-btn,#etapa2:has(#areaPIX[style*="block"]) .pix-show-qr-btn{min-height:42px!important;margin-top:7px!important}
+#etapa2:has(#areaPIX[style*="block"]) .pix-howto{margin-top:8px!important;font-size:12px!important}
+#etapa2:has(#areaPIX[style*="block"]) #aguardandoConfirmacao{margin-top:8px!important;padding:5px!important}
+@media(max-width:600px){#etapa2:has(#areaPIX[style*="block"]) .modal-header{padding-top:9px!important;padding-bottom:0!important}#etapa2:has(#areaPIX[style*="block"]) .logo-modal{max-width:115px!important}}
+</style>
+
+<style id="confirmacao-sorteios-mobile">
+.confirmacao-sorteios{text-align:center;color:#16233b;max-width:460px;margin:auto}
+.confirmacao-selo{margin:0 auto 7px;width:42px;height:42px;border-radius:50%;background:#e9f9ef;color:#19864b;font-size:26px;font-weight:900}
+.confirmacao-sorteios h2{font-size:21px;margin:0 0 5px;color:#17683c;font-weight:800}
+.confirmacao-sub{font-size:13px;margin:0 0 12px}
+.confirmacao-cards{display:grid;gap:9px;text-align:left}
+.confirmacao-card{padding:12px 13px;border:1px solid #d9e5f9;border-radius:12px;background:#f6f9ff;display:flex;flex-direction:column;gap:3px}
+.confirmacao-card-titulo{font-size:11px;color:#2458ac;font-weight:800;letter-spacing:.03em}
+.confirmacao-card strong{font-size:17px;color:#152d65}
+.confirmacao-card span{font-size:12px;color:#45556d}
+.confirmacao-card time{font-size:12px;color:#1b498a;font-weight:700}
+.confirmacao-alerta{font-size:10.5px;color:#64748b;line-height:1.4;margin:10px 0 5px}
+.confirmacao-transacao{font-size:11px;color:#64748b;margin:5px 0 11px;overflow-wrap:anywhere}
+.confirmacao-fechar{background:#ffcc27;border:0;border-radius:12px;min-height:46px;width:100%;font-weight:800;color:#1e293b;cursor:pointer}
+@media(max-width:640px){#etapa3 .modal-body{padding:12px!important}#etapa3 .modal-header{padding:6px!important}#etapa3 .progresso-etapas{margin:5px 0 8px!important}#etapa3 .confirmacao-card{padding:10px 12px}#etapa3 .confirmacao-card strong{font-size:16px}#etapa3 .confirmacao-sorteios h2{font-size:19px}}
+</style>
 </head>
 <body>
     <!-- HEADER -->
@@ -1446,6 +1480,7 @@
                 </div>
                 
                 <div class="modal-body">
+                    <div id="whatsappStep">
                     <h2>Seu WhatsApp</h2>
                     <p>Informe seu WhatsApp para receber informações sobre o pedido.</p>
                     
@@ -1468,6 +1503,7 @@
                         </div>
                     </div>
                     
+                    </div>
                     <div id="areaPIX" class="area-pix" style="display:none">
                         <div class="pix-payment-heading">Pagamento</div>
                         <div class="pix-payment-value"><span>Valor <b id="pixValorTela">—</b></span><span>Pagamento via Pix</span></div>
@@ -1492,171 +1528,37 @@
                 </div>
             </div>
             
-            <!-- ETAPA 3: CONFIRMAÇÃO -->
+            <!-- ETAPA 3: CONFIRMAÇÃO DE COMPRA E CALENDÁRIO -->
             <div id="etapa3" class="etapa">
-                <div class="modal-header">
-                    <img src="images/logoviva.png" alt="Sorte" class="logo-modal">
-                </div>
-                
+                <div class="modal-header"><img src="images/logoviva.png" alt="Sorte" class="logo-modal"></div>
                 <div class="progresso-etapas">
-                    <div class="etapa-item completada">
-                        <div class="etapa-numero">✓</div>
-                        <div class="etapa-nome">Identificação</div>
-                    </div>
-                    <div class="etapa-item completada">
-                        <div class="etapa-numero">✓</div>
-                        <div class="etapa-nome">Pagamento</div>
-                    </div>
-                    <div class="etapa-item ativa">
-                        <div class="etapa-numero">3</div>
-                        <div class="etapa-nome">Confirmação</div>
-                    </div>
-                    <div class="etapa-item">
-                        <div class="etapa-numero">4</div>
-                        <div class="etapa-nome">Concluído</div>
-                    </div>
+                    <div class="etapa-item completada"><div class="etapa-numero">✓</div><div class="etapa-nome">Identificação</div></div>
+                    <div class="etapa-item completada"><div class="etapa-numero">✓</div><div class="etapa-nome">Pagamento</div></div>
+                    <div class="etapa-item ativa"><div class="etapa-numero">3</div><div class="etapa-nome">Concluído</div></div>
                 </div>
-                
                 <div class="modal-body">
-                    <div class="confirmacao-sucesso">
-                        <div class="icone-confirmacao">✅</div>
-                        <h2 style="color: #155724; margin-bottom: 10px;">Pagamento Confirmado!</h2>
-                        <p style="color: #155724;">Seu pagamento de <strong>R$ <span id="valorConfirmado">2,94</span></strong> foi processado com sucesso.</p>
-                        <p style="color: #155724; font-size: 12px; margin-top: 10px;" id="confirmacaoDetalhes">
-                            Transação ID: <span id="transacaoId"></span>
-                        </p>
-                    </div>
-                    
-                    <div class="anuncio-premio-clean">
-                        <div class="icone-premio">
-                            <i class="bi bi-gift-fill"></i>
-                        </div>
-                        <h3>Parabéns!</h3>
-                        <p class="texto-premio">Você está participando do sorteio instantâneo <strong>SORTE</strong></p>
-                        <p class="subtitulo-premio">Clique no botão abaixo para revelar seu prêmio</p>
-                    </div>
-                    
-                    <button class="btn-premio btn-premio-clean" onclick="avancarParaEtapa4()">
-                        <i class="bi bi-sparkles"></i>
-                        REVELAR PRÊMIO INSTANTÂNEO
-                        <i class="bi bi-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- ETAPA 4: RESULTADO / CONTATO + OFERTA OPCIONAL DE TÍTULOS -->
-            <div id="etapa4" class="etapa">
-                <div class="modal-header">
-                    <img src="images/logoviva.png" alt="Sorte" class="logo-modal">
-                </div>
-                
-                <div class="progresso-etapas">
-                    <div class="etapa-item completada">
-                        <div class="etapa-numero">✓</div>
-                        <div class="etapa-nome">Identificação</div>
-                    </div>
-                    <div class="etapa-item completada">
-                        <div class="etapa-numero">✓</div>
-                        <div class="etapa-nome">Pagamento</div>
-                    </div>
-                    <div class="etapa-item completada">
-                        <div class="etapa-numero">✓</div>
-                        <div class="etapa-nome">Confirmação</div>
-                    </div>
-                    <div class="etapa-item ativa">
-                        <div class="etapa-numero">4</div>
-                        <div class="etapa-nome">Concluído</div>
-                    </div>
-                </div>
-                
-                <div class="modal-body">
-                    <div class="texto-chamativo-premio">
-                        🎉 RESULTADO DO PRÊMIO INSTANTÂNEO 🎉
-                    </div>
-                    
-                    <div class="premio-ganho">
-                        <div class="imagem-premio">
-                            <img src="https://i.postimg.cc/BXbd1TCW/image.png" 
-                                 alt="Parabéns! Prêmio de R$ 30.000,00"
-                                 onerror="this.onerror=null; this.src='images/fallback-premio.png';">
-                        </div>
-                        
-                        <div class="info-cota-premiada">
-                            <i class="bi bi-ticket-perforated-fill" style="margin-right: 8px;"></i>
-                            🎉 <strong>PARABÉNS!</strong> A cota premiada <strong>#202630000</strong> e o prêmio de <strong>R$ 30.000,00</strong> foram confirmados em nosso sistema oficial. Nossa equipe seguirá com o atendimento pelo <strong>telefone cadastrado</strong>.
-                        </div>
-                    </div>
-
-                    <div class="form-chave-pix atendimento-premio-info">
-                        <h3><i class="bi bi-telephone-fill"></i> Próxima etapa do atendimento</h3>
-                        <p class="oferta-aviso"><strong>Você não precisa informar sua chave PIX agora.</strong> Nossa equipe entrará em contato pelo telefone cadastrado e orientará com segurança os dados necessários para o atendimento do prêmio confirmado.</p>
-                        <p class="dados-pix-depois"><i class="bi bi-shield-check"></i> A chave PIX e os demais dados para recebimento serão solicitados somente durante o atendimento da equipe.</p>
-                    </div>
-                    
-                    <button class="btn-sacar-premio" onclick="sacarPremio()">
-                        <i class="bi bi-cash-coin"></i>
-                        🏆 ATIVAR OFERTA DO MILHÃO<br><span style="font-size:12px;font-weight:700;opacity:.92;">200 títulos extras • R$ 27,40</span>
-                    </button>
-                    
-                    <div id="areaPagamentoTaxa" class="area-pagamento-taxa">
-                        <div class="aviso-receita">
-                            <i class="bi bi-stars" style="margin-right: 8px; color: #ffd54a;"></i>
-                            <strong>OFERTA EXCLUSIVA PARA O SORTEIO DE DOMINGO</strong><br><br>
-                            
-                            <p style="margin-bottom: 10px;">Uma <strong>oferta especial está disponível para você</strong>: leve <strong>200 títulos extras por apenas R$ 27,40</strong>. Pelo valor normal de R$ 0,49 por título, seriam <s>R$ 98,00</s>. Nesta oferta, você economiza <strong>R$ 70,60</strong> (aprox. <strong>72% de desconto</strong>) e participa com mais títulos no sorteio de <strong>R$ 1 MILHÃO no domingo</strong>.</p>
-                            
-                            <p style="margin-bottom: 10px;">Oferta adicional e opcional. Ela não interfere no recebimento de qualquer prêmio já confirmado. Consulte no regulamento as condições da promoção e eventual ação de apoio ao Hospital do Câncer.</p>
-                            
-                            <div class="quadro-taxa">
-                                <div class="texto-taxa-pequeno">200 TÍTULOS EXTRAS:</div>
-                                <div class="valor-taxa-branco">R$ 27,40</div>
-                                <div class="texto-taxa-rodape">De R$ 98,00 por R$ 27,40 • oferta opcional para o sorteio de domingo</div>
+                    <section class="confirmacao-sorteios" aria-live="polite">
+                        <div class="confirmacao-selo">✓</div>
+                        <h2>Pagamento confirmado!</h2>
+                        <p class="confirmacao-sub">Sua compra de <strong id="quantidadeTitulosConfirmada">15</strong> títulos foi confirmada.</p>
+                        <div class="confirmacao-cards">
+                            <div class="confirmacao-card">
+                                <div class="confirmacao-card-titulo">🎉 SORTEIO DE HOJE</div>
+                                <strong>Até R$ 100 mil no PIX</strong>
+                                <span>Além de casas e carros, conforme a campanha.</span>
+                                <time id="dataSorteioHojeConfirmacao"></time>
+                            </div>
+                            <div class="confirmacao-card">
+                                <div class="confirmacao-card-titulo">🏆 SORTEIO DE DOMINGO</div>
+                                <strong>R$ 1 milhão</strong>
+                                <span>Prêmio especial anunciado na página.</span>
+                                <time id="dataSorteioDomingoConfirmacao"></time>
                             </div>
                         </div>
-                        
-                        <div id="areaPIXTaxa" class="area-pix" style="display: block; margin-top: 10px;">
-                            <div class="qrcode-container">
-                                <div id="qrCodeTaxa"></div>
-                                <p style="color: #666; font-size: 13px;">Escaneie o QR Code para comprar 200 títulos por R$ 27,40</p>
-                            </div>
-                            
-                            <div class="codigo-pix">
-                                <p style="color: #333; font-size: 14px; margin-bottom: 8px;">Ou copie o código PIX:</p>
-                                <div class="input-copiar">
-                                    <input type="text" id="codigoPIXTaxa" readonly>
-                                    <button onclick="copiarCodigoPIXTaxa()">Copiar</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div id="aguardandoTaxa" class="aguardando-confirmacao" style="display: none;">
-                            <div class="rodinha-grande"></div>
-                            <div class="aguardando-texto">Aguardando confirmação da compra</div>
-                            <div class="aguardando-detalhes" id="statusTaxa">Verificando pagamento...</div>
-                        </div>
-                    </div>
-
-                    <div id="mensagemFinalPremio" style="display: none;">
-                        <div class="passos-premio final-mobile-card">
-                            <div class="final-ok-icon"><i class="bi bi-check-lg"></i></div>
-                            <h3>200 títulos extras confirmados!</h3>
-                            <p class="final-subtitulo">Sua oferta especial para o sorteio de domingo foi confirmada com sucesso.</p>
-                            <div class="final-resumo">
-                                <div class="final-resumo-item"><span>Cota confirmada</span><strong>#202630000</strong></div>
-                                <div class="final-resumo-item"><span>Prêmio confirmado</span><strong>R$ 30.000,00</strong></div>
-                                <div class="final-resumo-item"><span>Títulos extras</span><strong>200 títulos</strong></div>
-                                <div class="final-resumo-item"><span>Sorteio especial</span><strong>R$ 1 MILHÃO • DOMINGO</strong></div>
-                            </div>
-                        </div>
-                        <div class="final-aguarde-contato">
-                            <div class="final-phone-icon"><i class="bi bi-telephone-fill"></i></div>
-                            <div>
-                                <strong>Próxima etapa: atendimento e recebimento do prêmio</strong>
-                                <p>Agora é só aguardar. Nossa equipe seguirá pelo <b>telefone cadastrado</b> e orientará os próximos passos e os dados necessários para o recebimento do prêmio confirmado.</p>
-                            </div>
-                        </div>
-                        <p class="final-nota">A compra dos títulos extras é independente do atendimento do prêmio confirmado.</p>
-                    </div>
+                        <p class="confirmacao-alerta">Sua participação e as datas efetivas dos sorteios seguem o regulamento da edição. A compra não garante premiação.</p>
+                        <p class="confirmacao-transacao">Pedido: <span id="transacaoId"></span> • R$ <span id="valorConfirmado">9,90</span></p>
+                        <button type="button" class="confirmacao-fechar" onclick="fecharModal()">Entendi, concluir</button>
+                    </section>
                 </div>
             </div>
         </div>
@@ -2128,6 +2030,7 @@ function irParaWhatsApp(){
  document.getElementById('etapaCarrinho').classList.remove('ativa');
  mostrarEtapa(2);
  document.getElementById('areaPIX').style.display='none';
+ document.getElementById('whatsappStep').style.display='block';
  document.getElementById('aguardandoConfirmacao').style.display='none';
  document.getElementById('btnGerarPIX').style.display='block';
  document.querySelector('#modalPagamento .modal-conteudo').scrollTop=0;
@@ -2210,6 +2113,7 @@ function irParaWhatsApp(){
             
             document.getElementById('codigoPIX').value = resultado.codigo_pix || resultado.qr_code;
             
+            document.getElementById('whatsappStep').style.display = 'none';
             document.getElementById('areaPIX').style.display = 'block';
             document.getElementById('pixValorTela').textContent = formatarBRL(pacoteSelecionado.valor);
             document.getElementById('pixQrArea').style.display='none';
@@ -2218,7 +2122,7 @@ function irParaWhatsApp(){
                 const areaPix = document.getElementById('areaPIX');
                 const modalConteudo = document.querySelector('#modalPagamento .modal-conteudo');
                 if (areaPix && modalConteudo) {
-                    areaPix.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    modalConteudo.scrollTo({top:0,behavior:'smooth'});
                 }
             }, 100);
             
@@ -2416,7 +2320,7 @@ function irParaWhatsApp(){
         
         enviarEventoConversao(pacoteSelecionado.valor, pacoteSelecionado.quantidade, dadosUsuario.transactionId);
         
-        document.getElementById('transacaoId').textContent = dadosUsuario.transactionId;
+        document.getElementById('transacaoId').textContent = dadosUsuario.transactionId;\n        atualizarConfirmacaoSorteios();
         
         mostrarPopupNotificacao('✅ Pagamento confirmado! Redirecionando...');
         
@@ -2444,20 +2348,6 @@ function irParaWhatsApp(){
         localStorage.setItem('transacoes_cliente', JSON.stringify(transacoes));
         
         console.log('✅ Pagamento confirmado salvo:', transacao);
-    }
-
-    function avancarParaEtapa4() {
-        mostrarEtapa(4);
-        
-        dadosUsuario.taxaPaga = false;
-        document.getElementById('areaPagamentoTaxa').style.display = 'none';
-        document.querySelector('.btn-sacar-premio').style.display = 'block';
-        document.getElementById('mensagemFinalPremio').style.display = 'none';
-        
-        // A chave PIX do prêmio agora será informada durante o atendimento.
-        // O campo foi removido da interface; por isso não tentamos mais acessá-lo aqui.
-        
-        salvarVisualizacaoPremio();
     }
 
     function formatarCPFString(cpf) {
@@ -3004,6 +2894,29 @@ function irParaWhatsApp(){
   const d=document.getElementById('dataProximoDomingo');
   if(d) d.textContent=domingo.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'}).replace(/^./,c=>c.toUpperCase());
 })();
+</script>
+
+<script id="datas-confirmacao-sorteios">
+function atualizarConfirmacaoSorteios(){
+  const now=new Date();
+  const parts=Object.fromEntries(new Intl.DateTimeFormat('en-US',{
+    timeZone:'America/Sao_Paulo',year:'numeric',month:'numeric',day:'numeric',weekday:'short'
+  }).formatToParts(now).filter(p=>p.type!=='literal').map(p=>[p.type,p.value]));
+  const ano=Number(parts.year),mes=Number(parts.month),dia=Number(parts.day);
+  const base=new Date(Date.UTC(ano,mes-1,dia,12));
+  const diaSemana=base.getUTCDay();
+  const domingo=new Date(base);
+  domingo.setUTCDate(base.getUTCDate()+(7-diaSemana)%7);
+  const formatar=d=>new Intl.DateTimeFormat('pt-BR',{timeZone:'UTC',weekday:'long',day:'2-digit',month:'long',year:'numeric'}).format(d);
+  const hoje=document.getElementById('dataSorteioHojeConfirmacao');
+  const prox=document.getElementById('dataSorteioDomingoConfirmacao');
+  const qtd=document.getElementById('quantidadeTitulosConfirmada');
+  if(hoje)hoje.textContent=formatar(base);
+  if(prox)prox.textContent=formatar(domingo);
+  if(qtd && typeof pacoteSelecionado!=='undefined')qtd.textContent=String(pacoteSelecionado.quantidade);
+}
+document.addEventListener('DOMContentLoaded',atualizarConfirmacaoSorteios);
+setInterval(atualizarConfirmacaoSorteios,60000);
 </script>
 </body>
 </html>

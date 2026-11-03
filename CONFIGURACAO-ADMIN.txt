@@ -1,0 +1,16 @@
+PAINEL: /admin.html
+Configure na Vercel > Project > Settings > Environment Variables:
+SENHA DO ADMIN = 593120 (já configurada no servidor; troque antes de produção)
+UPSTASH_REDIS_REST_URL = URL REST do seu banco Redis
+UPSTASH_REDIS_REST_TOKEN = token REST do seu banco Redis
+
+As fichas são gravadas quando o PIX é GERADO (não significa pagamento aprovado).
+O painel mostra as últimas 200 fichas e calcula idade pela data de nascimento.
+As fichas expiram após 90 dias no Redis; use sua política de retenção de dados.
+A consulta de CPF e a API AllowPay originais foram mantidas.
+ATENÇÃO: O projeto original contém credenciais de serviços expostas no código.
+Antes de publicar, substitua/revogue as chaves e mova a consulta CPF para uma API no servidor.
+Teste o fluxo e a integração em ambiente de homologação antes de publicar.
+
+O repositório privado não protege o site publicado. A senha fixa é temporária e deve ser substituída por uma variável de ambiente antes de uso real.
+Sem UPSTASH_REDIS_REST_URL e UPSTASH_REDIS_REST_TOKEN, o painel NÃO salva nem lista fichas.
