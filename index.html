@@ -1224,7 +1224,46 @@
 .confirmacao-fechar{background:#ffcc27;border:0;border-radius:12px;min-height:46px;width:100%;font-weight:800;color:#1e293b;cursor:pointer}
 @media(max-width:640px){#etapa3 .modal-body{padding:12px!important}#etapa3 .modal-header{padding:6px!important}#etapa3 .progresso-etapas{margin:5px 0 8px!important}#etapa3 .confirmacao-card{padding:10px 12px}#etapa3 .confirmacao-card strong{font-size:16px}#etapa3 .confirmacao-sorteios h2{font-size:19px}}
 </style>
-</head>
+<style id="funil-unificado-css">
+#modalPagamento .funil-unificado{display:flex!important;gap:3px!important;margin:4px 0 9px!important;padding:0 7px!important;justify-content:space-between!important}
+#modalPagamento .funil-unificado .etapa-item{flex:1;min-width:0;display:flex!important;align-items:center;flex-direction:column;gap:3px}
+#modalPagamento .funil-unificado .etapa-numero{width:28px;height:28px;display:grid;place-items:center;background:#eef2fa;color:#63738c;border:1px solid #d8e1f0;border-radius:50%;font-size:12px;font-weight:800}
+#modalPagamento .funil-unificado .etapa-item.ativa .etapa-numero{background:#0750c6;color:white;border-color:#0750c6}
+#modalPagamento .funil-unificado .etapa-item.completada .etapa-numero{background:#e8f7ee;color:#138a4a;border-color:#a7dec0}
+#modalPagamento .funil-unificado .etapa-nome{font-size:10px!important;line-height:1.1!important;white-space:nowrap;color:#51617b;font-weight:600;text-align:center}
+#modalPagamento .funil-unificado .etapa-item.ativa .etapa-nome{color:#0750c6;font-weight:800}
+.prazo-domingo{margin:8px 0;padding:8px 10px;border-radius:9px;background:#edf4ff;color:#174a97;text-align:center;font-size:12px;font-weight:600}
+.prazo-domingo strong{font-variant-numeric:tabular-nums;font-size:13px}
+#etapa3 .confirmacao-cards{gap:7px}#etapa3 .confirmacao-card{padding:9px 11px}
+@media(max-width:360px){#modalPagamento .funil-unificado .etapa-nome{font-size:9px!important}#modalPagamento .funil-unificado .etapa-numero{width:25px;height:25px}}
+</style><style id="visual-referencia-2026-final">
+/* O mesmo indicador em todas as telas: concluídos azuis, atual com borda azul */
+#modalPagamento .progresso-etapas.funil-unificado{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:7px!important;padding:0!important;margin:8px 0 13px!important;height:37px!important;background:transparent!important;border:0!important;overflow:hidden!important}
+#modalPagamento .progresso-etapas.funil-unificado:before,#modalPagamento .progresso-etapas.funil-unificado:after,#modalPagamento .progresso-etapas.funil-unificado .etapa-item:before,#modalPagamento .progresso-etapas.funil-unificado .etapa-item:after{display:none!important;content:none!important}
+#modalPagamento .funil-unificado .etapa-item{display:none!important;flex:none!important;position:static!important;min-width:0!important;height:36px!important;border:0!important;border-radius:9px!important;background:#f1f2f5!important;color:#a3aab7!important;align-items:center!important;justify-content:center!important;flex-direction:row!important;gap:4px!important;padding:0 12px!important;box-shadow:none!important}
+#modalPagamento .funil-unificado .etapa-item.funil-passado{display:flex!important;width:55px!important;padding:0!important;background:#0750c6!important;color:white!important}
+#modalPagamento .funil-unificado .etapa-item.funil-atual{display:flex!important;flex:1!important;border:1.5px solid #3676ff!important;background:white!important;color:#0750c6!important;min-width:0!important}
+#modalPagamento .funil-unificado .etapa-item.funil-proximo{display:flex!important;width:44px!important;padding:0!important}
+#modalPagamento .funil-unificado .etapa-numero{font-size:14px!important;font-weight:800!important;width:auto!important;height:auto!important;line-height:1!important;background:transparent!important;color:inherit!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+#modalPagamento .funil-unificado .etapa-nome{display:none!important}
+#modalPagamento .funil-unificado .funil-atual .etapa-nome{display:inline!important;font-size:13px!important;font-weight:750!important;color:#0750c6!important;white-space:nowrap!important}
+#modalPagamento .funil-unificado .funil-passado .etapa-numero{display:flex!important;align-items:center!important;justify-content:center!important;background:white!important;color:#0750c6!important;border-radius:50%!important;width:18px!important;height:18px!important;font-size:11px!important}
+/* PIX fiel ao azul da referência */
+#etapa2 #areaPIX{background:#fff!important;border:0!important;padding:0!important;color:#26374f!important}
+#etapa2 #areaPIX .pix-payment-heading{background:#0750c6!important;color:#fff!important;font-size:20px!important;font-weight:800!important;border-radius:9px!important;padding:16px 18px!important;margin:8px 0 12px!important}
+#etapa2 #areaPIX .pix-payment-value{border:1px solid #e3e7ed!important;border-radius:8px!important;padding:15px 16px!important;background:#fff!important;color:#657389!important;display:flex!important;justify-content:space-between!important;gap:8px!important;font-size:13px!important}
+#etapa2 #areaPIX .pix-payment-brand{display:flex!important;justify-content:center!important;align-items:center!important;gap:6px!important;margin:26px 0 14px!important}
+#etapa2 #areaPIX .pix-payment-brand img{width:58px!important;height:58px!important;object-fit:contain!important}
+#etapa2 #areaPIX .pix-payment-brand span{font-size:52px!important;font-weight:300!important;color:#92969d!important;letter-spacing:-4px!important}
+#etapa2 #areaPIX .pix-instructions{text-align:center!important;font-size:13px!important;color:#64748b!important;margin:8px 0 18px!important;line-height:1.45!important}
+#etapa2 #areaPIX .codigo-pix{margin:0 0 12px!important}
+#etapa2 #areaPIX #codigoPIX{background:#f1f5fa!important;color:#8ca3c7!important;border:1px solid #d7e1ef!important;border-radius:7px!important;width:100%!important;height:49px!important;min-height:49px!important;font-size:14px!important;padding:12px!important}
+#etapa2 #areaPIX .pix-copy-btn,#etapa2 #areaPIX .pix-show-qr-btn{display:block!important;width:100%!important;min-height:48px!important;border-radius:8px!important;font-size:15px!important;font-weight:800!important;color:#fff!important;box-shadow:none!important;margin:9px 0!important}
+#etapa2 #areaPIX .pix-copy-btn{background:#0647ba!important;border:1px solid #0647ba!important}
+#etapa2 #areaPIX .pix-show-qr-btn{background:#1e64d1!important;border:2px solid #0750c6!important}
+#etapa2 #areaPIX .pix-howto{background:#f0f4f9!important;border-radius:8px!important;color:#526a8c!important;text-align:center!important;padding:14px!important;font-size:12px!important;line-height:1.5!important;margin:22px 0 4px!important}
+@media(max-width:600px){#modalPagamento .modal-header{padding:8px 12px 0!important}#modalPagamento .logo-modal{max-width:128px!important;margin-bottom:4px!important}#modalPagamento .modal-body{padding:10px 13px 16px!important}#etapa2 #areaPIX .pix-payment-brand{margin:14px 0 9px!important}#etapa2 #areaPIX .pix-payment-brand img{width:46px!important;height:46px!important}#etapa2 #areaPIX .pix-payment-brand span{font-size:42px!important}#etapa2 #areaPIX .pix-howto{margin-top:12px!important}}
+</style></head>
 <body>
     <!-- HEADER -->
     <header class="white-header">
@@ -1319,14 +1358,15 @@
         <div class="proximo-sorteio-card">
             <div class="proximo-sorteio-topo">PROMOÇÃO DIÁRIA</div>
             <div class="proximo-sorteio-premio">ATÉ R$ 200 MIL NO PIX</div>
-            <div class="proximo-sorteio-data">EDIÇÃO DE HOJE • <span id="dataPromocaoHoje">--/--/----</span></div>
+            <div class="proximo-sorteio-data">SORTEIO DE HOJE</div>
             <div class="proximo-sorteio-info">Sorteio de hoje • participações a partir de R$ 0,49</div>
             <div class="promo-diaria-linha"><span class="promo-diaria-chip">✓ Sorteio diário</span><span class="promo-diaria-chip">✓ Resultado da edição</span><span class="promo-diaria-chip">✓ Participação identificada</span></div>
             <div class="promo-diaria-destaque"><strong>Até R$ 200 mil, casas e carros hoje</strong> • + R$ 1 milhão no domingo.</div>
+            <div class="prazo-domingo">⏳ Próximo domingo em <strong class="contador-domingo">--d --h --m --s</strong></div>
             <div class="premio-domingo-box">
                 <span class="premio-domingo-tag">PRÊMIO ESPECIAL DE DOMINGO</span>
                 <strong>R$ 1 MILHÃO</strong>
-                <span>Próximo sorteio: <b id="dataProximoDomingo">--/--/----</b></span>
+                <span>Confira a data no regulamento</span>
             </div>
         </div>
         <div class="ganhadores-cabecalho"><div><h2>Ganhadores recentes</h2><p>Confira os ganhadores do sorteio da edição <strong id="edicaoUltimoSorteio">006</strong> de <strong id="dataUltimoSorteio">domingo, 13 de setembro de 2026</strong></p></div></div>
@@ -1396,8 +1436,9 @@
                 <div class="modal-header">
                     <img src="images/logoviva.png" alt="Sorte" class="logo-modal">
                 </div>
+<div class="progresso-etapas funil-unificado" aria-label="Etapas do pedido"><div class="etapa-item"><div class="etapa-numero">1</div><div class="etapa-nome">CPF</div></div><div class="etapa-item"><div class="etapa-numero">2</div><div class="etapa-nome">Bilhetes</div></div><div class="etapa-item"><div class="etapa-numero">3</div><div class="etapa-nome">Pagamento</div></div><div class="etapa-item"><div class="etapa-numero">4</div><div class="etapa-nome">Concluído</div></div></div>
                 
-                <div class="progresso-etapas funil-identificacao"><div class="etapa-item ativa"><div class="etapa-numero">1.</div><div class="etapa-nome">Identificação</div></div><div class="etapa-item"><div class="etapa-numero">2</div><div class="etapa-nome">Carrinho</div></div></div>
+                
                 
                 <div class="modal-body">
                     <h2>Olá, boas vindas!</h2>
@@ -1439,8 +1480,9 @@
             
             <div id="etapaCarrinho" class="etapa">
  <div class="modal-header"><img src="images/logoviva.png" alt="Viva Sorte" class="logo-modal"></div>
+<div class="progresso-etapas funil-unificado" aria-label="Etapas do pedido"><div class="etapa-item"><div class="etapa-numero">1</div><div class="etapa-nome">CPF</div></div><div class="etapa-item"><div class="etapa-numero">2</div><div class="etapa-nome">Bilhetes</div></div><div class="etapa-item"><div class="etapa-numero">3</div><div class="etapa-nome">Pagamento</div></div><div class="etapa-item"><div class="etapa-numero">4</div><div class="etapa-nome">Concluído</div></div></div>
  <div class="modal-body">
-  <div class="funil-compacto"><span class="feito">✓</span><span class="atual">2. Carrinho</span></div>
+  
   <div class="cart-head">Seu carrinho</div>
   <div class="cart-line"><div><strong>🎟️ Números da sorte</strong><div class="cart-sub">Ajuste seus títulos</div></div><div class="cart-counter"><button type="button" onclick="mudarQuantidadeCarrinho(-1)" aria-label="Diminuir">−</button><strong id="cartQtd">15</strong><button type="button" onclick="mudarQuantidadeCarrinho(1)" aria-label="Aumentar">+</button></div></div>
   <div class="cart-offer"><div class="cart-offer-top">💎 &nbsp; PRÊMIOS DA EDIÇÃO</div><div class="cart-offer-body"><div><strong>🎉 Até R$ 200 mil, casas e carros + R$ 1 milhão no domingo</strong><p>Confira as condições e datas no regulamento.</p><span class="cart-offer-quantity">🎟️ <b id="cartQtdOferta">15</b> títulos</span></div></div></div>
@@ -1459,25 +1501,9 @@
                 <div class="modal-header">
                     <img src="images/logoviva.png" alt="Sorte" class="logo-modal">
                 </div>
+<div class="progresso-etapas funil-unificado" aria-label="Etapas do pedido"><div class="etapa-item"><div class="etapa-numero">1</div><div class="etapa-nome">CPF</div></div><div class="etapa-item"><div class="etapa-numero">2</div><div class="etapa-nome">Bilhetes</div></div><div class="etapa-item"><div class="etapa-numero">3</div><div class="etapa-nome">Pagamento</div></div><div class="etapa-item"><div class="etapa-numero">4</div><div class="etapa-nome">Concluído</div></div></div>
                 
-                <div class="progresso-etapas">
-                    <div class="etapa-item completada">
-                        <div class="etapa-numero">✓</div>
-                        <div class="etapa-nome">Identificação</div>
-                    </div>
-                    <div class="etapa-item ativa">
-                        <div class="etapa-numero">2</div>
-                        <div class="etapa-nome">Pagamento</div>
-                    </div>
-                    <div class="etapa-item">
-                        <div class="etapa-numero">3</div>
-                        <div class="etapa-nome">Confirmação</div>
-                    </div>
-                    <div class="etapa-item">
-                        <div class="etapa-numero">4</div>
-                        <div class="etapa-nome">Concluído</div>
-                    </div>
-                </div>
+                
                 
                 <div class="modal-body">
                     <div id="whatsappStep">
@@ -1531,28 +1557,25 @@
             <!-- ETAPA 3: CONFIRMAÇÃO DE COMPRA E CALENDÁRIO -->
             <div id="etapa3" class="etapa">
                 <div class="modal-header"><img src="images/logoviva.png" alt="Sorte" class="logo-modal"></div>
-                <div class="progresso-etapas">
-                    <div class="etapa-item completada"><div class="etapa-numero">✓</div><div class="etapa-nome">Identificação</div></div>
-                    <div class="etapa-item completada"><div class="etapa-numero">✓</div><div class="etapa-nome">Pagamento</div></div>
-                    <div class="etapa-item ativa"><div class="etapa-numero">3</div><div class="etapa-nome">Concluído</div></div>
-                </div>
+<div class="progresso-etapas funil-unificado" aria-label="Etapas do pedido"><div class="etapa-item"><div class="etapa-numero">1</div><div class="etapa-nome">CPF</div></div><div class="etapa-item"><div class="etapa-numero">2</div><div class="etapa-nome">Bilhetes</div></div><div class="etapa-item"><div class="etapa-numero">3</div><div class="etapa-nome">Pagamento</div></div><div class="etapa-item"><div class="etapa-numero">4</div><div class="etapa-nome">Concluído</div></div></div>
+                
                 <div class="modal-body">
                     <section class="confirmacao-sorteios" aria-live="polite">
                         <div class="confirmacao-selo">✓</div>
                         <h2>Pagamento confirmado!</h2>
                         <p class="confirmacao-sub">Sua compra de <strong id="quantidadeTitulosConfirmada">15</strong> títulos foi confirmada.</p>
-                        <div class="confirmacao-cards">
+                        <div class="prazo-domingo">⏳ Próximo domingo em <strong class="contador-domingo">--d --h --m --s</strong></div><div class="confirmacao-cards">
                             <div class="confirmacao-card">
                                 <div class="confirmacao-card-titulo">🎉 SORTEIO DE HOJE</div>
-                                <strong>Até R$ 200 mil no PIX</strong>
-                                <span>Além de casas e carros, conforme a campanha.</span>
-                                <time id="dataSorteioHojeConfirmacao"></time>
+                                <strong>Até R$ 200 mil no PIX, casas e carros</strong>
+                                <span>Casas e carros, conforme a campanha.</span>
+                                <span>Confira data e horário no regulamento.</span>
                             </div>
                             <div class="confirmacao-card">
                                 <div class="confirmacao-card-titulo">🏆 SORTEIO DE DOMINGO</div>
                                 <strong>R$ 1 milhão</strong>
                                 <span>Prêmio especial anunciado na página.</span>
-                                <time id="dataSorteioDomingoConfirmacao"></time>
+                                <span>Confira data e horário no regulamento.</span>
                             </div>
                         </div>
                         <p class="confirmacao-alerta">Sua participação e as datas efetivas dos sorteios seguem o regulamento da edição. A compra não garante premiação.</p>
@@ -1810,17 +1833,16 @@
     }
 
     function atualizarProgressoEtapas(etapaAtual) {
-        document.querySelectorAll('.etapa-item').forEach((item, index) => {
-            item.classList.remove('ativa', 'completada');
-            
-            const numeroItem = index + 1;
-            
-            if (numeroItem < etapaAtual) {
-                item.classList.add('completada');
-                item.querySelector('.etapa-numero').textContent = '✓';
-            } else if (numeroItem === etapaAtual) {
-                item.classList.add('ativa');
-            }
+        const etapaVisivel=document.querySelector('#modalPagamento .etapa.ativa');
+        const etapaMap={etapa1:1,etapaCarrinho:2,etapa2:3,etapa3:4};
+        const atual=etapaVisivel ? (etapaMap[etapaVisivel.id]||etapaAtual) : etapaAtual;
+        document.querySelectorAll('#modalPagamento .funil-unificado').forEach(barra=>{
+            barra.querySelectorAll('.etapa-item').forEach((item,i)=>{
+                const n=i+1;
+                item.classList.toggle('ativa',n===atual);
+                item.classList.toggle('completada',n<atual);
+                item.querySelector('.etapa-numero').textContent=n<atual?'✓':String(n);
+            });
         });
     }
 
@@ -2007,7 +2029,7 @@
 function formatarBRL(v){return Number(v).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});}
 function mostrarCarrinho(){
  document.querySelectorAll('#modalPagamento .etapa').forEach(el=>el.classList.remove('ativa'));
- document.getElementById('etapaCarrinho').classList.add('ativa');
+ document.getElementById('etapaCarrinho').classList.add('ativa'); atualizarProgressoEtapas(2);
  atualizarCarrinho();
  document.querySelector('#modalPagamento .modal-conteudo').scrollTop=0;
 }
@@ -2919,5 +2941,41 @@ function atualizarConfirmacaoSorteios(){
 document.addEventListener('DOMContentLoaded',atualizarConfirmacaoSorteios);
 setInterval(atualizarConfirmacaoSorteios,60000);
 </script>
-</body>
+<script id="contador-calendario-domingo">
+function atualizarContadorDomingo(){
+  const p=new Intl.DateTimeFormat('en-US',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(new Date());
+  const v=Object.fromEntries(p.filter(x=>x.type!=='literal').map(x=>[x.type,Number(x.value)]));
+  const utcBase=Date.UTC(v.year,v.month-1,v.day);
+  const weekDay=new Date(utcBase).getUTCDay();
+  const offset=(7-weekDay)%7 || 7;
+  const days=offset-1;
+  const secondsLeft=days*86400+(23-v.hour)*3600+(59-v.minute)*60+(60-v.second);
+  const d=Math.floor(secondsLeft/86400),h=Math.floor(secondsLeft%86400/3600),m=Math.floor(secondsLeft%3600/60),sec=secondsLeft%60;
+  document.querySelectorAll('.contador-domingo').forEach(el=>el.textContent=`${d}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(sec).padStart(2,'0')}s`);
+}
+document.addEventListener('DOMContentLoaded',atualizarContadorDomingo);
+setInterval(atualizarContadorDomingo,1000);
+</script><script id="funil-indicador-referencia">
+(function(){
+ function pintar(){
+  var tela=document.querySelector('#modalPagamento .etapa.ativa');
+  if(!tela)return;
+  var etapa=tela.id==='etapa1'?0:tela.id==='etapaCarrinho'?1:tela.id==='etapa2'?2:3;
+  document.querySelectorAll('#modalPagamento .funil-unificado').forEach(function(barra){
+   var itens=barra.querySelectorAll('.etapa-item');
+   itens.forEach(function(item,i){
+    item.classList.remove('funil-passado','funil-atual','funil-proximo');
+    if(i<etapa){item.classList.add('funil-passado');item.querySelector('.etapa-numero').textContent='✓';}
+    else if(i===etapa){item.classList.add('funil-atual');item.querySelector('.etapa-numero').textContent=(i+1)+'.';}
+    else if(i===etapa+1){item.classList.add('funil-proximo');item.querySelector('.etapa-numero').textContent=String(i+1);}
+   });
+  });
+  var pix=document.getElementById('areaPIX');
+  if(tela.id==='etapa2'&&pix&&getComputedStyle(pix).display!=='none'){
+   document.querySelectorAll('#etapa2 .funil-unificado .funil-atual .etapa-nome').forEach(function(el){el.textContent='Pagamento';});
+  }
+ }
+ document.addEventListener('DOMContentLoaded',function(){pintar();var modal=document.getElementById('modalPagamento');if(modal){new MutationObserver(function(records){if(records.some(function(r){return r.target.classList && (r.target.classList.contains('etapa') || r.target.id==='areaPIX');}))pintar();}).observe(modal,{attributes:true,attributeFilter:['class','style'],subtree:true});}});
+})();
+</script></body>
 </html>
