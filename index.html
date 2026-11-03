@@ -2128,7 +2128,11 @@ function irParaWhatsApp(){
             const qrCodeImage = resultado.qr_code_image || 
                 `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(resultado.codigo_pix || resultado.qr_code)}`;
             
-            document.getElementById('qrCodeImage').innerHTML = 
+            if (!resultado.transaction_id) throw new Error('A API não retornou o ID da transação.');
+            dadosUsuario.transactionId = resultado.transaction_id;
+            dadosUsuario.pixData = resultado;
+            iniciarVerificacaoAutomatica();
+            document.getElementById('qrCodeImage').innerHTML =
                 `<img src="${qrCodeImage}" alt="QR Code PIX" style="max-width: 200px; border: 1px solid #ddd;">`;
             
             document.getElementById('codigoPIX').value = resultado.codigo_pix || resultado.qr_code;
@@ -2281,7 +2285,7 @@ function irParaWhatsApp(){
             
         } catch (error) {
             console.error('💥 Erro na verificação automática:', error);
-            document.getElementById('statusAguardando').textContent = `Erro na verificação. Tentando novamente...`;
+            const el = document.getElementById('statusAguardando'); if (el) el.textContent = 'Erro na verificação. Tentando novamente...';
         }
     }
 
@@ -2297,7 +2301,7 @@ function irParaWhatsApp(){
         setTimeout(() => {
             if (verificacaoAutomatica) {
                 pararVerificacaoAutomatica();
-                document.getElementById('statusAguardando').innerHTML = '<span style="color: #e74c3c;">⏰ Tempo de verificação esgotado. Se já pagou, contate o suporte.</span>';
+                const el = document.getElementById('statusAguardando'); if (el) el.textContent = 'Tempo de verificação esgotado. Se já pagou, contate o suporte.';
             }
         }, 1800000);
     }
@@ -2312,24 +2316,22 @@ function irParaWhatsApp(){
 
     function processarConfirmacao(dadosConfirmacao) {
         pararVerificacaoAutomatica();
-        const transacaoSalva = JSON.parse(localStorage.getItem(`pix_cliente_${dadosUsuario.transactionId}`) || '{}');
-        transacaoSalva.status = 'paid';
-        transacaoSalva.confirmado_em = new Date().toISOString();
-        transacaoSalva.confirmacao_dados = dadosConfirmacao;
-        localStorage.setItem(`pix_cliente_${dadosUsuario.transactionId}`, JSON.stringify(transacaoSalva));
-        
-        salvarConfirmacaoPagamento();
-        
-        enviarEventoConversao(pacoteSelecionado.valor, pacoteSelecionado.quantidade, dadosUsuario.transactionId);
-        
-        document.getElementById('transacaoId').textContent = dadosUsuario.transactionId;
-        try { atualizarConfirmacaoSorteios(); } catch (e) { console.warn(e); }
-        
-        mostrarPopupNotificacao('✅ Pagamento confirmado! Redirecionando...');
-        
-        setTimeout(() => {
-            mostrarEtapa(3);
-        }, 2000);
+        try {
+            const chave = `pix_cliente_${dadosUsuario.transactionId}`;
+            const registro = JSON.parse(localStorage.getItem(chave) || '{}');
+            registro.status = 'paid';
+            registro.confirmado_em = new Date().toISOString();
+            registro.confirmacao_dados = dadosConfirmacao;
+            localStorage.setItem(chave, JSON.stringify(registro));
+            salvarConfirmacaoPagamento();
+        } catch (e) { console.warn('Falha no armazenamento local (pagamento confirmado na API):', e); }
+        try { enviarEventoConversao(pacoteSelecionado.valor, pacoteSelecionado.quantidade, dadosUsuario.transactionId); }
+        catch (e) { console.warn('Evento de conversão indisponível:', e); }
+        const id = document.getElementById('transacaoId');
+        if (id) id.textContent = dadosUsuario.transactionId;
+        try { atualizarConfirmacaoSorteios(); } catch(e) { console.warn('Contadores:', e); }
+        try { mostrarPopupNotificacao('Pagamento confirmado!'); } catch(e) {}
+        mostrarEtapa(3);
     }
 
     function salvarConfirmacaoPagamento() {
