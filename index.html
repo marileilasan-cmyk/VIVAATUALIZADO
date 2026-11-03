@@ -1103,6 +1103,41 @@
 #etapa2 #areaPIX{background:#fff!important;border:0!important}
 #etapa2 #areaPIX .qrcode-container{margin:14px auto!important}
 </style>
+
+<style id="checkout-fidelidade-referencia">
+#etapaCarrinho .cart-head{background:#0750c6!important;border-radius:9px!important;color:white!important;padding:19px!important;font-size:22px!important}
+#etapaCarrinho .cart-line{padding:16px 2px!important}
+#etapaCarrinho .cart-offer{margin:22px 0 28px;border:1.5px solid #0750c6;border-radius:18px;overflow:hidden;background:#e9f2ff}
+#etapaCarrinho .cart-offer-top{background:#0750c6;color:#fff;font-size:13px;font-weight:800;padding:13px 16px}
+#etapaCarrinho .cart-offer-body{padding:20px 17px;color:#0646a5}
+#etapaCarrinho .cart-offer-body strong{font-size:17px;line-height:1.4}
+#etapaCarrinho .cart-offer-body p{font-size:13px;line-height:1.5;margin:9px 0 14px;color:#365f95}
+#etapaCarrinho .cart-offer-quantity{display:inline-block;background:white;padding:9px 12px;border-radius:10px;font-size:13px}
+#etapaCarrinho .cart-summary-title{color:#063ac6;font-weight:800;font-size:17px;margin-top:18px}
+#etapaCarrinho .cart-summary-title small{display:block;font-weight:400;font-size:13px}
+#etapaCarrinho .pix-only{display:flex!important;align-items:center!important;gap:12px!important;border:1px solid #a9b8ff!important;border-radius:12px!important;padding:17px!important;background:#fff!important}
+#etapaCarrinho .pix-radio{width:20px;height:20px;flex:0 0 20px;border-radius:50%;background:#0750c6;box-shadow:inset 0 0 0 5px white;border:2px solid #0750c6}
+#etapaCarrinho .pix-logo{width:31px;height:31px;object-fit:contain}
+#etapaCarrinho .pix-selected{margin-left:auto;color:#0750c6;font-size:12px;font-weight:700}
+#etapaCarrinho .btn-principal{background:#40b52b!important;color:white!important;border-radius:9px!important}
+#etapa2 .pix-payment-heading{background:#0750c6;color:white;padding:19px;border-radius:9px;font-weight:800;font-size:22px;margin-bottom:18px}
+#etapa2 .pix-payment-value{display:flex;justify-content:space-between;gap:8px;padding:17px 12px;border:1px solid #e3e7ed;border-radius:8px;color:#64748b;font-size:14px}
+#etapa2 .pix-payment-brand{display:flex;justify-content:center;align-items:center;gap:10px;margin:30px 0 14px;color:#888;font-size:58px;font-weight:300}
+#etapa2 .pix-payment-brand img{width:65px;height:65px;object-fit:contain}
+#etapa2 .pix-instructions{text-align:center;color:#64748b;line-height:1.5;font-size:15px;margin:10px 0 25px}
+#etapa2 .codigo-pix input{display:block;width:100%;border:1px solid #d4deed;background:#f1f5fa;border-radius:8px;padding:16px 12px;color:#8597b1;font-size:13px!important;white-space:nowrap;text-overflow:clip}
+#etapa2 .pix-copy-btn,#etapa2 .pix-show-qr-btn{width:100%;min-height:49px;border-radius:8px;font-size:15px;font-weight:800;margin-top:10px;cursor:pointer}
+#etapa2 .pix-copy-btn{background:#0750c6;border:2px solid #0750c6;color:white}
+#etapa2 .pix-show-qr-btn{background:#fff;border:2px solid #0750c6;color:#0750c6}
+#etapa2 #pixQrArea{text-align:center;padding:18px 0}
+#etapa2 #pixQrArea img{max-width:220px;width:100%;height:auto}
+#etapa2 .pix-howto{margin-top:35px;color:#63758e}
+#etapa2 .pix-howto h3{text-align:center;font-size:21px;color:#69788e;margin-bottom:15px}
+#etapa2 .pix-howto p{background:#f0f5fb;padding:16px;margin:0;line-height:1.5;font-size:14px}
+#etapa2 .pix-howto p:first-of-type{border-radius:10px 10px 0 0}
+#etapa2 .pix-howto p:last-of-type{border-radius:0 0 10px 10px}
+@media(max-width:650px){#etapa2 .pix-payment-value{font-size:12px}#etapaCarrinho .cart-line{flex-wrap:wrap}#etapaCarrinho .cart-counter{margin-left:auto}}
+</style>
 </head>
 <body>
     <!-- HEADER -->
@@ -1337,11 +1372,14 @@
  <div class="modal-header"><img src="images/logoviva.png" alt="Viva Sorte" class="logo-modal"></div>
  <div class="modal-body">
   <div style="font-size:14px;color:#0751c6;font-weight:700">✓ Identificação &nbsp; → &nbsp; 2. Carrinho</div>
-  <div class="cart-head">Seu carrinho</div>
-  <div class="cart-line"><div><strong>Títulos selecionados</strong><div style="font-size:13px;color:#64748b">Confira a quantidade antes de pagar</div></div><div class="cart-counter"><button type="button" onclick="mudarQuantidadeCarrinho(-1)" aria-label="Diminuir">−</button><strong id="cartQtd">15</strong><button type="button" onclick="mudarQuantidadeCarrinho(1)" aria-label="Aumentar">+</button></div></div>
+  <div class="cart-head">2. Carrinho</div>
+  <div class="cart-line"><div><strong>🎟️ Viva Sorte — seus títulos</strong><div style="font-size:13px;color:#64748b">Escolha a quantidade de números da sorte</div></div><div class="cart-counter"><button type="button" onclick="mudarQuantidadeCarrinho(-1)" aria-label="Diminuir">−</button><strong id="cartQtd">15</strong><button type="button" onclick="mudarQuantidadeCarrinho(1)" aria-label="Aumentar">+</button></div></div>
+  <div class="cart-offer"><div class="cart-offer-top">💎 &nbsp; OPORTUNIDADE DA CAMPANHA</div><div class="cart-offer-body"><div><strong>🎉 Concorra aos prêmios da edição!</strong><p>Confira os prêmios, a data do sorteio e as regras no regulamento oficial.</p><span class="cart-offer-quantity">🎟️ <b id="cartQtdOferta">15</b> números da sorte selecionados</span></div></div></div>
+  <div class="cart-summary-title">RESUMO <small>da sua compra</small></div>
+  <div class="cart-line"><span>🎟️ Números da sorte</span><strong id="cartQtdResumo">15</strong></div>
   <div class="cart-line"><span>Valor dos títulos</span><strong id="cartValor">R$ 0,00</strong></div>
   <div class="cart-total"><span>Total a pagar</span><span id="cartTotal">R$ 0,00</span></div>
-  <div class="pix-only"><span>◆ &nbsp; PIX</span><strong>Selecionado ✓</strong></div>
+  <div class="pix-only" role="radio" aria-checked="true"><span class="pix-radio" aria-hidden="true"></span><img class="pix-logo" src="https://baixarfavicon.com.br/wp-content/themes/baixarfavicon/ferramentas/logos-pix-png/logos/logo-pix-520x520.png" alt="Logo Pix"><strong>Pix</strong><span class="pix-selected">Selecionado</span></div>
   <div class="cart-terms">Ao prosseguir, você concorda com os termos e condições da campanha.</div>
   <button type="button" class="btn-principal" id="btnCarrinhoPagar" onclick="irParaWhatsApp()">Continuar para pagamento →</button>
  </div>
@@ -1395,25 +1433,18 @@
                         </div>
                     </div>
                     
-                    <div id="areaPIX" class="area-pix">
-                        <div class="qrcode-container">
-                            <div id="qrCodeImage"></div>
-                            <p style="color: #666; font-size: 13px; margin-top: 10px;">Escaneie o QR Code com seu app bancário</p>
-                        </div>
-                        
-                        <div class="codigo-pix">
-                            <p style="color: #333; font-size: 14px; margin-bottom: 8px;">Ou copie o código PIX:</p>
-                            <div class="input-copiar">
-                                <input type="text" id="codigoPIX" readonly style="font-size: 11px;">
-                                <button onclick="copiarCodigoPIX()">Copiar</button>
-                            </div>
-                        </div>
-                        
-                        <p style="color: #666; font-size: 13px; text-align: center; margin-top: 15px;">
-                            Após o pagamento, aguarde a confirmação automática
-                        </p>
+                    <div id="areaPIX" class="area-pix" style="display:none">
+                        <div class="pix-payment-heading">Pagamento</div>
+                        <div class="pix-payment-value"><span>Valor <b id="pixValorTela">—</b></span><span>Pagamento via Pix</span></div>
+                        <div class="pix-payment-brand"><img src="https://baixarfavicon.com.br/wp-content/themes/baixarfavicon/ferramentas/logos-pix-png/logos/logo-pix-520x520.png" alt="Pix"><span>pix</span></div>
+                        <p class="pix-instructions">Copie o código Pix abaixo e cole no aplicativo do seu banco para finalizar a compra.</p>
+                        <div class="codigo-pix"><input type="text" id="codigoPIX" readonly aria-label="Código Pix copia e cola"></div>
+                        <button type="button" class="pix-copy-btn" onclick="copiarCodigoPIX()">▣ &nbsp; Copiar código Pix</button>
+                        <button type="button" class="pix-show-qr-btn" id="btnMostrarQRCode" onclick="alternarQRCode()">▦ &nbsp; Visualizar código QR</button>
+                        <div class="qrcode-container" id="pixQrArea" style="display:none"><div id="qrCodeImage"></div><p>Escaneie o QR Code no aplicativo do seu banco.</p></div>
+                        <div class="pix-howto"><h3>Como pagar?</h3><p>📋 &nbsp; Clique em <b>Copiar código Pix</b> e abra o aplicativo do seu banco.</p><p>✓ &nbsp; Escolha Pix copia e cola, cole o código e confirme o pagamento.</p></div>
                     </div>
-                    
+
                     <div id="aguardandoConfirmacao" class="aguardando-confirmacao">
                         <div class="rodinha-grande"></div>
                         <div class="aguardando-texto">Aguardando confirmação do pagamento</div>
@@ -2046,6 +2077,8 @@ function mostrarCarrinho(){
 function atualizarCarrinho(){
  if(!pacoteSelecionado)return;
  document.getElementById('cartQtd').textContent=pacoteSelecionado.quantidade;
+ document.getElementById('cartQtdOferta').textContent=pacoteSelecionado.quantidade;
+ document.getElementById('cartQtdResumo').textContent=pacoteSelecionado.quantidade;
  document.getElementById('cartValor').textContent=formatarBRL(pacoteSelecionado.valor);
  document.getElementById('cartTotal').textContent=formatarBRL(pacoteSelecionado.valor);
  atualizarResumoCompra();
@@ -2143,6 +2176,9 @@ function irParaWhatsApp(){
             document.getElementById('codigoPIX').value = resultado.codigo_pix || resultado.qr_code;
             
             document.getElementById('areaPIX').style.display = 'block';
+            document.getElementById('pixValorTela').textContent = formatarBRL(pacoteSelecionado.valor);
+            document.getElementById('pixQrArea').style.display='none';
+            document.getElementById('btnMostrarQRCode').textContent='▦   Visualizar código QR';
             setTimeout(() => {
                 const areaPix = document.getElementById('areaPIX');
                 const modalConteudo = document.querySelector('#modalPagamento .modal-conteudo');
@@ -2192,6 +2228,13 @@ function irParaWhatsApp(){
         }
     }
 
+    function alternarQRCode(){
+      const area=document.getElementById('pixQrArea');
+      const btn=document.getElementById('btnMostrarQRCode');
+      const visible=area.style.display!=='none';
+      area.style.display=visible?'none':'block';
+      btn.textContent=visible?'▦   Visualizar código QR':'▦   Ocultar código QR';
+    }
     function copiarCodigoPIX() {
         const codigoInput = document.getElementById('codigoPIX');
         const btnCopiar = document.querySelector('.input-copiar button');
