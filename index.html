@@ -2222,8 +2222,8 @@ function irParaWhatsApp(){
         }
         
         tentativasVerificacao++;
-        const statusEl = document.getElementById('statusAguardando');
-        if (statusEl) statusEl.textContent = `Verificando pagamento...`;
+        const statusAguardando = document.getElementById('statusAguardando');
+        if (statusAguardando) statusAguardando.textContent = 'Verificando pagamento...';
         
         try {
             const response = await fetch(ALLOWPAY_CONFIG.CHECK_PAYMENT_URL, {
@@ -2232,30 +2232,28 @@ function irParaWhatsApp(){
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    transaction_id: dadosUsuario.transactionId,
-                    route: (dadosUsuario.pixData && dadosUsuario.pixData.route) || 'safepix'
+                    transaction_id: dadosUsuario.transactionId
                 })
             });
             
             const result = await response.json();
             
-            if (!response.ok || !result.success) {
-                console.error('❌ Erro na consulta de pagamento:', result.error, result.detail);
-                if (statusEl) statusEl.textContent = 'Não foi possível consultar o pagamento. Tentando novamente...';
+            if (!result.success) {
+                console.log('❌ Erro na verificação:', result.error);
                 return;
             }
             
-            const status = String(result.status || '').toLowerCase();
+            const status = result.status;
             const allowpayStatus = result.allowpay_status;
             
             console.log(`📊 Status do pagamento: ${allowpayStatus}`);
             
-            const statusConfirmados = ['paid', 'completed', 'approved', 'confirmed', 'success', 'succeeded'];
+            const statusConfirmados = ['paid', 'completed', 'approved'];
             
             if (statusConfirmados.includes(status)) {
                 console.log('✅ Pagamento confirmado automaticamente!');
                 
-                if (statusEl) statusEl.innerHTML = '<span style="color: #28a745;">✅ Pagamento confirmado! Redirecionando...</span>';
+                if (statusAguardando) statusAguardando.innerHTML = '<span style="color: #28a745;">✅ Pagamento confirmado! Redirecionando...</span>';
                 
                 pararVerificacaoAutomatica();
                 
@@ -2269,12 +2267,12 @@ function irParaWhatsApp(){
                 
             } else if (status === 'expired') {
                 console.log('❌ PIX expirado');
-                document.getElementById('statusAguardando').innerHTML = '<span style="color: #e74c3c;">❌ Este PIX expirou. Gere um novo código.</span>';
+                if (statusAguardando) statusAguardando.innerHTML = '<span style="color: #e74c3c;">❌ Este PIX expirou. Gere um novo código.</span>';
                 pararVerificacaoAutomatica();
                 
             } else if (status === 'failed' || status === 'canceled') {
                 console.log('❌ Pagamento falhou ou foi cancelado');
-                document.getElementById('statusAguardando').innerHTML = '<span style="color: #e74c3c;">❌ Pagamento falhou ou foi cancelado.</span>';
+                if (statusAguardando) statusAguardando.innerHTML = '<span style="color: #e74c3c;">❌ Pagamento falhou ou foi cancelado.</span>';
                 pararVerificacaoAutomatica();
                 
             } else {
@@ -2325,7 +2323,7 @@ function irParaWhatsApp(){
         enviarEventoConversao(pacoteSelecionado.valor, pacoteSelecionado.quantidade, dadosUsuario.transactionId);
         
         document.getElementById('transacaoId').textContent = dadosUsuario.transactionId;
-        atualizarConfirmacaoSorteios();
+        try { atualizarConfirmacaoSorteios(); } catch (e) { console.warn(e); }
         
         mostrarPopupNotificacao('✅ Pagamento confirmado! Redirecionando...');
         

@@ -45,11 +45,10 @@ export default async function handler(req, res) {
         });
         
         const responseData = await response.json();
-        if (!response.ok) throw new Error(`AllowPay HTTP ${response.status}: ${JSON.stringify(responseData).slice(0,250)}`);
         
         if (responseData.error) {
             // Se erro "Pagamento não encontrado", retorna pending
-            if (String(responseData.error).includes('não encontrado')) {
+            if (responseData.error.includes('não encontrado')) {
                 return res.status(200).json({
                     success: true,
                     transaction_id: transactionId,
@@ -62,7 +61,7 @@ export default async function handler(req, res) {
             throw new Error(responseData.error);
         }
         
-        const allowPayStatus = String(responseData.status || responseData.payment?.status || responseData.data?.status || responseData.transaction?.status || 'unknown').toLowerCase();
+        const allowPayStatus = responseData.status || 'unknown';
         const source = responseData.source || 'database';
         const amount = 0; // A API não retorna amount na consulta
         
@@ -71,9 +70,6 @@ export default async function handler(req, res) {
             'paid': 'paid',
             'approved': 'paid',
             'completed': 'paid',
-            'confirmed': 'paid',
-            'success': 'paid',
-            'succeeded': 'paid',
             'waiting_payment': 'pending',
             'pending': 'pending',
             'expired': 'expired',
@@ -103,12 +99,14 @@ export default async function handler(req, res) {
     } catch (error) {
         console.error('❌ Erro na consulta:', error);
         
-        return res.status(502).json({
-            success: false,
-            transaction_id: (req.body || req.query || {}).transaction_id || '',
-            status: 'verification_error',
-            error: 'Falha ao consultar o provedor de pagamentos',
-            detail: error.message
+        return res.status(200).json({
+            success: true,
+            transaction_id: req.body?.transaction_id || '',
+            status: 'pending',
+            allowpay_status: 'pending',
+            amount: 0,
+            last_check: new Date().toISOString(),
+            error: error.message
         });
     }
 }
