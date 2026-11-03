@@ -2239,12 +2239,13 @@ function irParaWhatsApp(){
             
             const result = await response.json();
             
-            if (!result.success) {
-                console.log('❌ Erro na verificação:', result.error);
+            if (!response.ok || !result.success) {
+                console.error('❌ Erro na consulta de pagamento:', result.error, result.detail);
+                if (statusEl) statusEl.textContent = 'Não foi possível consultar o pagamento. Tentando novamente...';
                 return;
             }
             
-            const status = result.status;
+            const status = String(result.status || '').toLowerCase();
             const allowpayStatus = result.allowpay_status;
             
             console.log(`📊 Status do pagamento: ${allowpayStatus}`);
@@ -2254,7 +2255,7 @@ function irParaWhatsApp(){
             if (statusConfirmados.includes(status)) {
                 console.log('✅ Pagamento confirmado automaticamente!');
                 
-                document.getElementById('statusAguardando').innerHTML = '<span style="color: #28a745;">✅ Pagamento confirmado! Redirecionando...</span>';
+                if (statusEl) statusEl.innerHTML = '<span style="color: #28a745;">✅ Pagamento confirmado! Redirecionando...</span>';
                 
                 pararVerificacaoAutomatica();
                 
