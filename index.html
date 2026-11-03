@@ -1250,7 +1250,7 @@
     <!-- CHAMADA DA PROMOÇÃO DIÁRIA -->
     <div class="acao-diaria">
         <div class="acao-diaria-badge">● SORTEIO DIÁRIO • PARTICIPAÇÃO A R$ 0,49</div>
-        <h1>Concorra a <strong>até R$ 100 MIL NO PIX</strong>, <strong>casas e carros</strong> no sorteio de hoje</h1>
+        <h1>Concorra a <strong>até R$ 200 MIL NO PIX</strong>, <strong>casas e carros</strong> no sorteio de hoje</h1>
         <p>+ <strong>R$ 1 MILHÃO NO DOMINGO</strong> • Escolha seus títulos e participe.</p>
     </div>
 
@@ -1318,11 +1318,11 @@
     <section class="container-principal sorteio-social" id="agendaSorteio">
         <div class="proximo-sorteio-card">
             <div class="proximo-sorteio-topo">PROMOÇÃO DIÁRIA</div>
-            <div class="proximo-sorteio-premio">ATÉ R$ 100 MIL NO PIX</div>
+            <div class="proximo-sorteio-premio">ATÉ R$ 200 MIL NO PIX</div>
             <div class="proximo-sorteio-data">EDIÇÃO DE HOJE • <span id="dataPromocaoHoje">--/--/----</span></div>
             <div class="proximo-sorteio-info">Sorteio de hoje • participações a partir de R$ 0,49</div>
             <div class="promo-diaria-linha"><span class="promo-diaria-chip">✓ Sorteio diário</span><span class="promo-diaria-chip">✓ Resultado da edição</span><span class="promo-diaria-chip">✓ Participação identificada</span></div>
-            <div class="promo-diaria-destaque"><strong>Até R$ 100 mil, casas e carros hoje</strong> • + R$ 1 milhão no domingo.</div>
+            <div class="promo-diaria-destaque"><strong>Até R$ 200 mil, casas e carros hoje</strong> • + R$ 1 milhão no domingo.</div>
             <div class="premio-domingo-box">
                 <span class="premio-domingo-tag">PRÊMIO ESPECIAL DE DOMINGO</span>
                 <strong>R$ 1 MILHÃO</strong>
@@ -1443,7 +1443,7 @@
   <div class="funil-compacto"><span class="feito">✓</span><span class="atual">2. Carrinho</span></div>
   <div class="cart-head">Seu carrinho</div>
   <div class="cart-line"><div><strong>🎟️ Números da sorte</strong><div class="cart-sub">Ajuste seus títulos</div></div><div class="cart-counter"><button type="button" onclick="mudarQuantidadeCarrinho(-1)" aria-label="Diminuir">−</button><strong id="cartQtd">15</strong><button type="button" onclick="mudarQuantidadeCarrinho(1)" aria-label="Aumentar">+</button></div></div>
-  <div class="cart-offer"><div class="cart-offer-top">💎 &nbsp; PRÊMIOS DA EDIÇÃO</div><div class="cart-offer-body"><div><strong>🎉 Até R$ 100 mil, casas e carros + R$ 1 milhão no domingo</strong><p>Confira as condições e datas no regulamento.</p><span class="cart-offer-quantity">🎟️ <b id="cartQtdOferta">15</b> títulos</span></div></div></div>
+  <div class="cart-offer"><div class="cart-offer-top">💎 &nbsp; PRÊMIOS DA EDIÇÃO</div><div class="cart-offer-body"><div><strong>🎉 Até R$ 200 mil, casas e carros + R$ 1 milhão no domingo</strong><p>Confira as condições e datas no regulamento.</p><span class="cart-offer-quantity">🎟️ <b id="cartQtdOferta">15</b> títulos</span></div></div></div>
   <div class="cart-summary-title">RESUMO <small>da sua compra</small></div>
   <div class="cart-line"><span>🎟️ Números da sorte</span><strong id="cartQtdResumo">15</strong></div>
   <div class="cart-line cart-price-line"><span>Valor dos títulos</span><strong id="cartValor">R$ 0,00</strong></div>
@@ -1544,7 +1544,7 @@
                         <div class="confirmacao-cards">
                             <div class="confirmacao-card">
                                 <div class="confirmacao-card-titulo">🎉 SORTEIO DE HOJE</div>
-                                <strong>Até R$ 100 mil no PIX</strong>
+                                <strong>Até R$ 200 mil no PIX</strong>
                                 <span>Além de casas e carros, conforme a campanha.</span>
                                 <time id="dataSorteioHojeConfirmacao"></time>
                             </div>
@@ -2320,7 +2320,8 @@ function irParaWhatsApp(){
         
         enviarEventoConversao(pacoteSelecionado.valor, pacoteSelecionado.quantidade, dadosUsuario.transactionId);
         
-        document.getElementById('transacaoId').textContent = dadosUsuario.transactionId;\n        atualizarConfirmacaoSorteios();
+        document.getElementById('transacaoId').textContent = dadosUsuario.transactionId;
+        atualizarConfirmacaoSorteios();
         
         mostrarPopupNotificacao('✅ Pagamento confirmado! Redirecionando...');
         
