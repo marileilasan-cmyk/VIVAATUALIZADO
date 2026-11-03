@@ -1263,7 +1263,16 @@
 #etapa2 #areaPIX .pix-show-qr-btn{background:#1e64d1!important;border:2px solid #0750c6!important}
 #etapa2 #areaPIX .pix-howto{background:#f0f4f9!important;border-radius:8px!important;color:#526a8c!important;text-align:center!important;padding:14px!important;font-size:12px!important;line-height:1.5!important;margin:22px 0 4px!important}
 @media(max-width:600px){#modalPagamento .modal-header{padding:8px 12px 0!important}#modalPagamento .logo-modal{max-width:128px!important;margin-bottom:4px!important}#modalPagamento .modal-body{padding:10px 13px 16px!important}#etapa2 #areaPIX .pix-payment-brand{margin:14px 0 9px!important}#etapa2 #areaPIX .pix-payment-brand img{width:46px!important;height:46px!important}#etapa2 #areaPIX .pix-payment-brand span{font-size:42px!important}#etapa2 #areaPIX .pix-howto{margin-top:12px!important}}
-</style><style id="contador-cards-compacto">#etapa3 .confirmacao-card{gap:5px}#etapa3 .confirmacao-card span b{color:#0750c6;font-variant-numeric:tabular-nums}#etapaCarrinho .premio-timer b{font-variant-numeric:tabular-nums}#etapa3 .confirmacao-card strong{font-size:15px}#etapa3 .confirmacao-alerta{font-size:10px}</style><style>.agenda-contagem,.agenda-domingo{font-size:13px;color:#174a97;font-weight:600;margin:6px 0}.agenda-contagem strong,.agenda-domingo b{font-variant-numeric:tabular-nums}</style></head>
+</style><style id="contador-cards-compacto">#etapa3 .confirmacao-card{gap:5px}#etapa3 .confirmacao-card span b{color:#0750c6;font-variant-numeric:tabular-nums}#etapaCarrinho .premio-timer b{font-variant-numeric:tabular-nums}#etapa3 .confirmacao-card strong{font-size:15px}#etapa3 .confirmacao-alerta{font-size:10px}</style><style>.agenda-contagem,.agenda-domingo{font-size:13px;color:#174a97;font-weight:600;margin:6px 0}.agenda-contagem strong,.agenda-domingo b{font-variant-numeric:tabular-nums}</style>
+<style id="ajuste-legibilidade-premio-domingo">
+/* Contraste específico do cartão azul de domingo */
+.premio-domingo-box,.premio-domingo-box .premio-domingo-tag,.premio-domingo-box .agenda-domingo,.premio-domingo-box .agenda-domingo span,.premio-domingo-box .agenda-domingo b,.premio-domingo-box>strong,.premio-domingo-box>span:last-child{color:#ffffff!important;text-shadow:none!important;opacity:1!important;}
+.premio-domingo-box .agenda-domingo{font-size:15px!important;font-weight:700!important;line-height:1.55!important;display:flex!important;flex-wrap:wrap!important;gap:4px!important;align-items:center!important;}
+.premio-domingo-box .agenda-domingo b{font-variant-numeric:tabular-nums;font-weight:800!important;}
+.premio-domingo-box .premio-domingo-tag{color:#dce7ff!important;}
+@media(max-width:480px){.premio-domingo-box .agenda-domingo{font-size:13px!important;gap:3px!important}.premio-domingo-box>strong{font-size:27px!important;}}
+</style>
+</head>
 <body>
     <!-- HEADER -->
     <header class="white-header">
@@ -2213,7 +2222,8 @@ function irParaWhatsApp(){
         }
         
         tentativasVerificacao++;
-        document.getElementById('statusAguardando').textContent = `Verificando pagamento...`;
+        const statusEl = document.getElementById('statusAguardando');
+        if (statusEl) statusEl.textContent = `Verificando pagamento...`;
         
         try {
             const response = await fetch(ALLOWPAY_CONFIG.CHECK_PAYMENT_URL, {
@@ -2222,7 +2232,8 @@ function irParaWhatsApp(){
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    transaction_id: dadosUsuario.transactionId
+                    transaction_id: dadosUsuario.transactionId,
+                    route: (dadosUsuario.pixData && dadosUsuario.pixData.route) || 'safepix'
                 })
             });
             
@@ -2238,7 +2249,7 @@ function irParaWhatsApp(){
             
             console.log(`📊 Status do pagamento: ${allowpayStatus}`);
             
-            const statusConfirmados = ['paid', 'completed', 'approved'];
+            const statusConfirmados = ['paid', 'completed', 'approved', 'confirmed', 'success', 'succeeded'];
             
             if (statusConfirmados.includes(status)) {
                 console.log('✅ Pagamento confirmado automaticamente!');
@@ -2301,6 +2312,7 @@ function irParaWhatsApp(){
     }
 
     function processarConfirmacao(dadosConfirmacao) {
+        pararVerificacaoAutomatica();
         const transacaoSalva = JSON.parse(localStorage.getItem(`pix_cliente_${dadosUsuario.transactionId}`) || '{}');
         transacaoSalva.status = 'paid';
         transacaoSalva.confirmado_em = new Date().toISOString();
