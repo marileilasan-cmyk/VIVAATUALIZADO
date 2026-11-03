@@ -1318,18 +1318,6 @@
                     <div class="cota-qtd">+150</div><h1>R$73,50</h1><h2>SELECIONAR</h2>
                 </button>
             </div>
-            <div class="cotas-one">
-                <button type="button" class="cota" onclick="selecionarPacote(200, 98.00, event)">
-                    <div class="cota-qtd">+200</div><h1>R$98,00</h1><h2>SELECIONAR</h2>
-                </button>
-                <button type="button" class="cota" onclick="selecionarPacote(300, 147.00, event)">
-                    <div class="cota-qtd">+300</div><h1>R$147,00</h1><h2>SELECIONAR</h2>
-                </button>
-                <button type="button" class="cota" onclick="selecionarPacote(500, 245.00, event)">
-                    <div class="cota-qtd">+500</div><h1>R$245,00</h1><h2>SELECIONAR</h2>
-                </button>
-            </div>
-        </div>
     </div>
 
     <!-- CONTADOR PERSONALIZADO -->
@@ -1485,7 +1473,10 @@
   
   <div class="cart-head">Seu carrinho</div>
   <div class="cart-line"><div><strong>🎟️ Números da sorte</strong><div class="cart-sub">Ajuste seus títulos</div></div><div class="cart-counter"><button type="button" onclick="mudarQuantidadeCarrinho(-1)" aria-label="Diminuir">−</button><strong id="cartQtd">15</strong><button type="button" onclick="mudarQuantidadeCarrinho(1)" aria-label="Aumentar">+</button></div></div>
-  <div class="cart-offer"><div class="cart-offer-top">💎 &nbsp; PRÊMIOS DA EDIÇÃO</div><div class="cart-offer-body"><div><strong>🎉 Até R$ 200 mil, casas e carros + R$ 1 milhão no domingo</strong><p>Confira as condições e datas no regulamento.</p><span class="cart-offer-quantity">🎟️ <b id="cartQtdOferta">15</b> títulos</span></div></div></div>
+  <div class="cart-offer"><div class="cart-offer-top">🎁 PRÊMIOS DA EDIÇÃO</div><div class="cart-offer-body">
+<div class="premio-card"><strong>🎉 Sorteio de hoje: até R$ 200 mil no PIX, casas e carros</strong><div class="premio-timer">⏳ Janela promocional: <b class="contador-hoje">30:00</b></div></div>
+<div class="premio-card"><strong>🏆 Domingo: R$ 1 milhão</strong><div class="premio-timer">⏳ Até domingo, 21h (Brasília): <b class="contador-domingo">—</b></div></div>
+<p class="premio-nota">A contagem de 30 minutos é promocional, não confirma o horário do sorteio. Confira o regulamento.</p><span class="cart-offer-quantity">🎟️ <b id="cartQtdOferta">15</b> títulos</span></div></div>
   <div class="cart-summary-title">RESUMO <small>da sua compra</small></div>
   <div class="cart-line"><span>🎟️ Números da sorte</span><strong id="cartQtdResumo">15</strong></div>
   <div class="cart-line cart-price-line"><span>Valor dos títulos</span><strong id="cartValor">R$ 0,00</strong></div>
@@ -1708,7 +1699,7 @@
     }
 
     const MINIMO_TITULOS = 15;
-    const MAXIMO_TITULOS = 500;
+    const MAXIMO_TITULOS = 150;
 
     function incrementar() {
         const input = document.getElementById('numero');
@@ -2196,45 +2187,25 @@ function irParaWhatsApp(){
       area.style.display=visible?'none':'block';
       btn.textContent=visible?'▦   Visualizar código QR':'▦   Ocultar código QR';
     }
-    function copiarCodigoPIX() {
-        const codigoInput = document.getElementById('codigoPIX');
-        const btnCopiar = document.querySelector('.input-copiar button');
-        
-        if (!codigoInput.value) {
-            mostrarPopupNotificacao('❌ Nenhum código PIX disponível para copiar.', true);
-            return;
+    async function copiarCodigoPIX() {
+        const campo=document.getElementById('codigoPIX');
+        const botao=document.querySelector('.pix-copy-btn');
+        const codigo=(campo?.value||'').trim();
+        if(!codigo){ mostrarPopupNotificacao('Código PIX ainda não disponível.',true); return; }
+        let copiado=false;
+        try { if(navigator.clipboard?.writeText){ await navigator.clipboard.writeText(codigo); copiado=true; } }catch(e){ console.warn('Clipboard API indisponível',e); }
+        if(!copiado){
+            try { campo.focus();campo.select();campo.setSelectionRange(0,codigo.length);copiado=document.execCommand('copy'); }catch(e){console.warn('Cópia alternativa falhou',e);}
         }
-        
-        const textoOriginal = btnCopiar.textContent;
-        
-        codigoInput.select();
-        codigoInput.setSelectionRange(0, 99999);
-        
-        navigator.clipboard.writeText(codigoInput.value)
-            .then(() => {
-                btnCopiar.textContent = '✅ Copiado!';
-                btnCopiar.style.background = '#28a745';
-                
-                mostrarPopupNotificacao('✅ Código PIX copiado com sucesso!');
-                
-                setTimeout(() => {
-                    btnCopiar.textContent = textoOriginal;
-                    btnCopiar.style.background = '#2f4eb5';
-                }, 3000);
-            })
-            .catch(err => {
-                console.error('Erro ao copiar: ', err);
-                document.execCommand('copy');
-                btnCopiar.textContent = '❌ Falhou';
-                btnCopiar.style.background = '#e74c3c';
-                
-                mostrarPopupNotificacao('⚠️ Selecione e copie manualmente (Ctrl+C).', true);
-                
-                setTimeout(() => {
-                    btnCopiar.textContent = textoOriginal;
-                    btnCopiar.style.background = '#2f4eb5';
-                }, 3000);
-            });
+        if(copiado){
+            const original=botao.textContent;
+            botao.textContent='✓ Código PIX copiado!';
+            mostrarPopupNotificacao('Código PIX copiado com sucesso!');
+            setTimeout(()=>{botao.textContent=original;},2500);
+        }else{
+            campo.focus();campo.select();
+            mostrarPopupNotificacao('Selecione o código e copie manualmente.',true);
+        }
     }
 
     async function verificarPagamentoAutomatico() {
@@ -2734,7 +2705,7 @@ function irParaWhatsApp(){
         document.getElementById('numero').addEventListener('input', function() {
             this.value = this.value.replace(/[^0-9]/g, '');
             let valor = parseInt(this.value) || 0;
-            if (valor > 500) this.value = 500;
+            if (valor > 150) this.value = 150;
             atualizarBotaoComprar();
         });
         
@@ -2943,15 +2914,15 @@ setInterval(atualizarConfirmacaoSorteios,60000);
 </script>
 <script id="contador-calendario-domingo">
 function atualizarContadorDomingo(){
-  const p=new Intl.DateTimeFormat('en-US',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(new Date());
-  const v=Object.fromEntries(p.filter(x=>x.type!=='literal').map(x=>[x.type,Number(x.value)]));
-  const utcBase=Date.UTC(v.year,v.month-1,v.day);
-  const weekDay=new Date(utcBase).getUTCDay();
-  const offset=(7-weekDay)%7 || 7;
-  const days=offset-1;
-  const secondsLeft=days*86400+(23-v.hour)*3600+(59-v.minute)*60+(60-v.second);
-  const d=Math.floor(secondsLeft/86400),h=Math.floor(secondsLeft%86400/3600),m=Math.floor(secondsLeft%3600/60),sec=secondsLeft%60;
-  document.querySelectorAll('.contador-domingo').forEach(el=>el.textContent=`${d}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(sec).padStart(2,'0')}s`);
+ const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(new Date());
+ const v=Object.fromEntries(parts.filter(x=>x.type!=='literal').map(x=>[x.type,Number(x.value)]));
+ const hoje=Date.UTC(v.year,v.month-1,v.day);const dia=new Date(hoje).getUTCDay();
+ let dias=(7-dia)%7;if(dias===0 && (v.hour>21 || v.hour===21 && (v.minute>0||v.second>0)))dias=7;
+ const agoraLocal=Date.UTC(v.year,v.month-1,v.day,v.hour,v.minute,v.second);
+ const alvo=hoje+dias*86400000+21*3600000;
+ const t=Math.max(0,Math.floor((alvo-agoraLocal)/1000));
+ const d=Math.floor(t/86400),h=Math.floor(t%86400/3600),m=Math.floor(t%3600/60),seg=t%60;
+ document.querySelectorAll('.contador-domingo').forEach(el=>el.textContent=`${d}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(seg).padStart(2,'0')}s`);
 }
 document.addEventListener('DOMContentLoaded',atualizarContadorDomingo);
 setInterval(atualizarContadorDomingo,1000);
@@ -2977,5 +2948,5 @@ setInterval(atualizarContadorDomingo,1000);
  }
  document.addEventListener('DOMContentLoaded',function(){pintar();var modal=document.getElementById('modalPagamento');if(modal){new MutationObserver(function(records){if(records.some(function(r){return r.target.classList && (r.target.classList.contains('etapa') || r.target.id==='areaPIX');}))pintar();}).observe(modal,{attributes:true,attributeFilter:['class','style'],subtree:true});}});
 })();
-</script></body>
+</script><style id="premios-carrinho-compacto">#etapaCarrinho .premio-card{background:#fff;border:1px solid #d5e4fb;border-radius:9px;padding:9px 10px;margin:6px 0}#etapaCarrinho .premio-card strong{font-size:13px!important;color:#1648a5}#etapaCarrinho .premio-timer{font-size:11px;margin-top:4px;color:#365f95}#etapaCarrinho .premio-nota{font-size:10px!important;line-height:1.35;color:#64748b!important;margin:6px 0!important}</style><script id="contador-janela-promocional">(function(){const chave='inicioJanelaPromocional';let inicio;try{inicio=Number(sessionStorage.getItem(chave));if(!inicio||inicio>Date.now()){inicio=Date.now();sessionStorage.setItem(chave,String(inicio));}}catch(e){inicio=Date.now();}function atualizar(){const t=Math.max(0,1800-Math.floor((Date.now()-inicio)/1000));document.querySelectorAll('.contador-hoje').forEach(el=>el.textContent=String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0'));}atualizar();setInterval(atualizar,1000);})();</script></body>
 </html>
