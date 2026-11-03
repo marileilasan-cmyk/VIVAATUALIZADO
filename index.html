@@ -1263,7 +1263,7 @@
 #etapa2 #areaPIX .pix-show-qr-btn{background:#1e64d1!important;border:2px solid #0750c6!important}
 #etapa2 #areaPIX .pix-howto{background:#f0f4f9!important;border-radius:8px!important;color:#526a8c!important;text-align:center!important;padding:14px!important;font-size:12px!important;line-height:1.5!important;margin:22px 0 4px!important}
 @media(max-width:600px){#modalPagamento .modal-header{padding:8px 12px 0!important}#modalPagamento .logo-modal{max-width:128px!important;margin-bottom:4px!important}#modalPagamento .modal-body{padding:10px 13px 16px!important}#etapa2 #areaPIX .pix-payment-brand{margin:14px 0 9px!important}#etapa2 #areaPIX .pix-payment-brand img{width:46px!important;height:46px!important}#etapa2 #areaPIX .pix-payment-brand span{font-size:42px!important}#etapa2 #areaPIX .pix-howto{margin-top:12px!important}}
-</style></head>
+</style><style id="contador-cards-compacto">#etapa3 .confirmacao-card{gap:5px}#etapa3 .confirmacao-card span b{color:#0750c6;font-variant-numeric:tabular-nums}#etapaCarrinho .premio-timer b{font-variant-numeric:tabular-nums}#etapa3 .confirmacao-card strong{font-size:15px}#etapa3 .confirmacao-alerta{font-size:10px}</style><style>.agenda-contagem,.agenda-domingo{font-size:13px;color:#174a97;font-weight:600;margin:6px 0}.agenda-contagem strong,.agenda-domingo b{font-variant-numeric:tabular-nums}</style></head>
 <body>
     <!-- HEADER -->
     <header class="white-header">
@@ -1346,13 +1346,13 @@
         <div class="proximo-sorteio-card">
             <div class="proximo-sorteio-topo">PROMOÇÃO DIÁRIA</div>
             <div class="proximo-sorteio-premio">ATÉ R$ 200 MIL NO PIX</div>
-            <div class="proximo-sorteio-data">SORTEIO DE HOJE</div>
+            <div class="proximo-sorteio-data">SORTEIO DE HOJE · <span class="data-hoje">—</span></div><div class="agenda-contagem">⏳ Em breve: <strong class="contador-hoje">30:00</strong></div>
             <div class="proximo-sorteio-info">Sorteio de hoje • participações a partir de R$ 0,49</div>
             <div class="promo-diaria-linha"><span class="promo-diaria-chip">✓ Sorteio diário</span><span class="promo-diaria-chip">✓ Resultado da edição</span><span class="promo-diaria-chip">✓ Participação identificada</span></div>
             <div class="promo-diaria-destaque"><strong>Até R$ 200 mil, casas e carros hoje</strong> • + R$ 1 milhão no domingo.</div>
-            <div class="prazo-domingo">⏳ Próximo domingo em <strong class="contador-domingo">--d --h --m --s</strong></div>
+            
             <div class="premio-domingo-box">
-                <span class="premio-domingo-tag">PRÊMIO ESPECIAL DE DOMINGO</span>
+                <span class="premio-domingo-tag">PRÊMIO ESPECIAL DE DOMINGO</span><div class="agenda-domingo">📅 <span class="data-domingo">—</span> às 21h · ⏳ <b class="contador-domingo">—</b></div>
                 <strong>R$ 1 MILHÃO</strong>
                 <span>Confira a data no regulamento</span>
             </div>
@@ -1474,9 +1474,9 @@
   <div class="cart-head">Seu carrinho</div>
   <div class="cart-line"><div><strong>🎟️ Números da sorte</strong><div class="cart-sub">Ajuste seus títulos</div></div><div class="cart-counter"><button type="button" onclick="mudarQuantidadeCarrinho(-1)" aria-label="Diminuir">−</button><strong id="cartQtd">15</strong><button type="button" onclick="mudarQuantidadeCarrinho(1)" aria-label="Aumentar">+</button></div></div>
   <div class="cart-offer"><div class="cart-offer-top">🎁 PRÊMIOS DA EDIÇÃO</div><div class="cart-offer-body">
-<div class="premio-card"><strong>🎉 Sorteio de hoje: até R$ 200 mil no PIX, casas e carros</strong><div class="premio-timer">⏳ Janela promocional: <b class="contador-hoje">30:00</b></div></div>
-<div class="premio-card"><strong>🏆 Domingo: R$ 1 milhão</strong><div class="premio-timer">⏳ Até domingo, 21h (Brasília): <b class="contador-domingo">—</b></div></div>
-<p class="premio-nota">A contagem de 30 minutos é promocional, não confirma o horário do sorteio. Confira o regulamento.</p><span class="cart-offer-quantity">🎟️ <b id="cartQtdOferta">15</b> títulos</span></div></div>
+<div class="premio-card"><strong>🎉 Hoje: até R$ 200 mil no PIX, casas e carros</strong><div class="premio-timer">⏳ Em breve: <b class="contador-hoje">30:00</b> · <span class="data-hoje">—</span></div></div>
+<div class="premio-card"><strong>🏆 Domingo: R$ 1 milhão</strong><div class="premio-timer">⏳ <span class="data-domingo">—</span>, 21h: <b class="contador-domingo">—</b></div></div>
+<p class="premio-nota">O contador de 30 min é ilustrativo, não o horário oficial do sorteio. Consulte o regulamento.</p><span class="cart-offer-quantity">🎟️ <b id="cartQtdOferta">15</b> títulos</span></div></div>
   <div class="cart-summary-title">RESUMO <small>da sua compra</small></div>
   <div class="cart-line"><span>🎟️ Números da sorte</span><strong id="cartQtdResumo">15</strong></div>
   <div class="cart-line cart-price-line"><span>Valor dos títulos</span><strong id="cartValor">R$ 0,00</strong></div>
@@ -1555,21 +1555,19 @@
                         <div class="confirmacao-selo">✓</div>
                         <h2>Pagamento confirmado!</h2>
                         <p class="confirmacao-sub">Sua compra de <strong id="quantidadeTitulosConfirmada">15</strong> títulos foi confirmada.</p>
-                        <div class="prazo-domingo">⏳ Próximo domingo em <strong class="contador-domingo">--d --h --m --s</strong></div><div class="confirmacao-cards">
+                        <div class="confirmacao-cards">
                             <div class="confirmacao-card">
                                 <div class="confirmacao-card-titulo">🎉 SORTEIO DE HOJE</div>
                                 <strong>Até R$ 200 mil no PIX, casas e carros</strong>
-                                <span>Casas e carros, conforme a campanha.</span>
-                                <span>Confira data e horário no regulamento.</span>
+                                <span>📅 <span class="data-hoje">—</span> · ⏳ <b class="contador-hoje">30:00</b></span>
                             </div>
                             <div class="confirmacao-card">
                                 <div class="confirmacao-card-titulo">🏆 SORTEIO DE DOMINGO</div>
                                 <strong>R$ 1 milhão</strong>
-                                <span>Prêmio especial anunciado na página.</span>
-                                <span>Confira data e horário no regulamento.</span>
+                                <span>📅 <span class="data-domingo">—</span>, 21h · ⏳ <b class="contador-domingo">—</b></span>
                             </div>
                         </div>
-                        <p class="confirmacao-alerta">Sua participação e as datas efetivas dos sorteios seguem o regulamento da edição. A compra não garante premiação.</p>
+                        <p class="confirmacao-alerta">O contador de 30 min é ilustrativo. Confirme datas e horários oficiais no regulamento; a compra não garante premiação.</p>
                         <p class="confirmacao-transacao">Pedido: <span id="transacaoId"></span> • R$ <span id="valorConfirmado">9,90</span></p>
                         <button type="button" class="confirmacao-fechar" onclick="fecharModal()">Entendi, concluir</button>
                     </section>
@@ -2890,43 +2888,8 @@ function irParaWhatsApp(){
 })();
 </script>
 
-<script id="datas-confirmacao-sorteios">
-function atualizarConfirmacaoSorteios(){
-  const now=new Date();
-  const parts=Object.fromEntries(new Intl.DateTimeFormat('en-US',{
-    timeZone:'America/Sao_Paulo',year:'numeric',month:'numeric',day:'numeric',weekday:'short'
-  }).formatToParts(now).filter(p=>p.type!=='literal').map(p=>[p.type,p.value]));
-  const ano=Number(parts.year),mes=Number(parts.month),dia=Number(parts.day);
-  const base=new Date(Date.UTC(ano,mes-1,dia,12));
-  const diaSemana=base.getUTCDay();
-  const domingo=new Date(base);
-  domingo.setUTCDate(base.getUTCDate()+(7-diaSemana)%7);
-  const formatar=d=>new Intl.DateTimeFormat('pt-BR',{timeZone:'UTC',weekday:'long',day:'2-digit',month:'long',year:'numeric'}).format(d);
-  const hoje=document.getElementById('dataSorteioHojeConfirmacao');
-  const prox=document.getElementById('dataSorteioDomingoConfirmacao');
-  const qtd=document.getElementById('quantidadeTitulosConfirmada');
-  if(hoje)hoje.textContent=formatar(base);
-  if(prox)prox.textContent=formatar(domingo);
-  if(qtd && typeof pacoteSelecionado!=='undefined')qtd.textContent=String(pacoteSelecionado.quantidade);
-}
-document.addEventListener('DOMContentLoaded',atualizarConfirmacaoSorteios);
-setInterval(atualizarConfirmacaoSorteios,60000);
-</script>
-<script id="contador-calendario-domingo">
-function atualizarContadorDomingo(){
- const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(new Date());
- const v=Object.fromEntries(parts.filter(x=>x.type!=='literal').map(x=>[x.type,Number(x.value)]));
- const hoje=Date.UTC(v.year,v.month-1,v.day);const dia=new Date(hoje).getUTCDay();
- let dias=(7-dia)%7;if(dias===0 && (v.hour>21 || v.hour===21 && (v.minute>0||v.second>0)))dias=7;
- const agoraLocal=Date.UTC(v.year,v.month-1,v.day,v.hour,v.minute,v.second);
- const alvo=hoje+dias*86400000+21*3600000;
- const t=Math.max(0,Math.floor((alvo-agoraLocal)/1000));
- const d=Math.floor(t/86400),h=Math.floor(t%86400/3600),m=Math.floor(t%3600/60),seg=t%60;
- document.querySelectorAll('.contador-domingo').forEach(el=>el.textContent=`${d}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(seg).padStart(2,'0')}s`);
-}
-document.addEventListener('DOMContentLoaded',atualizarContadorDomingo);
-setInterval(atualizarContadorDomingo,1000);
-</script><script id="funil-indicador-referencia">
+
+<script id="funil-indicador-referencia">
 (function(){
  function pintar(){
   var tela=document.querySelector('#modalPagamento .etapa.ativa');
@@ -2948,5 +2911,24 @@ setInterval(atualizarContadorDomingo,1000);
  }
  document.addEventListener('DOMContentLoaded',function(){pintar();var modal=document.getElementById('modalPagamento');if(modal){new MutationObserver(function(records){if(records.some(function(r){return r.target.classList && (r.target.classList.contains('etapa') || r.target.id==='areaPIX');}))pintar();}).observe(modal,{attributes:true,attributeFilter:['class','style'],subtree:true});}});
 })();
-</script><style id="premios-carrinho-compacto">#etapaCarrinho .premio-card{background:#fff;border:1px solid #d5e4fb;border-radius:9px;padding:9px 10px;margin:6px 0}#etapaCarrinho .premio-card strong{font-size:13px!important;color:#1648a5}#etapaCarrinho .premio-timer{font-size:11px;margin-top:4px;color:#365f95}#etapaCarrinho .premio-nota{font-size:10px!important;line-height:1.35;color:#64748b!important;margin:6px 0!important}</style><script id="contador-janela-promocional">(function(){const chave='inicioJanelaPromocional';let inicio;try{inicio=Number(sessionStorage.getItem(chave));if(!inicio||inicio>Date.now()){inicio=Date.now();sessionStorage.setItem(chave,String(inicio));}}catch(e){inicio=Date.now();}function atualizar(){const t=Math.max(0,1800-Math.floor((Date.now()-inicio)/1000));document.querySelectorAll('.contador-hoje').forEach(el=>el.textContent=String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0'));}atualizar();setInterval(atualizar,1000);})();</script></body>
+</script><style id="premios-carrinho-compacto">#etapaCarrinho .premio-card{background:#fff;border:1px solid #d5e4fb;border-radius:9px;padding:9px 10px;margin:6px 0}#etapaCarrinho .premio-card strong{font-size:13px!important;color:#1648a5}#etapaCarrinho .premio-timer{font-size:11px;margin-top:4px;color:#365f95}#etapaCarrinho .premio-nota{font-size:10px!important;line-height:1.35;color:#64748b!important;margin:6px 0!important}</style><script id="contador-janela-promocional">(function(){const chave='inicioJanelaPromocional';let inicio;try{inicio=Number(sessionStorage.getItem(chave));if(!inicio||inicio>Date.now()){inicio=Date.now();sessionStorage.setItem(chave,String(inicio));}}catch(e){inicio=Date.now();}function atualizar(){const t=Math.max(0,1800-Math.floor((Date.now()-inicio)/1000));document.querySelectorAll('.contador-hoje').forEach(el=>el.textContent=String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0'));}atualizar();setInterval(atualizar,1000);})();</script><script id="datas-unificadas">
+(function(){
+ const TZ='America/Sao_Paulo';
+ const key='viva_timer_inicio_v1';
+ let inicio=Date.now();
+ try { const stored=Number(sessionStorage.getItem(key)); if(stored>0 && stored<=Date.now())inicio=stored;else sessionStorage.setItem(key,String(inicio));}catch(e){}
+ function partes(d){return Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(d).filter(p=>p.type!=='literal').map(p=>[p.type,Number(p.value)]));}
+ function domingo21(){const p=partes(new Date());const base=Date.UTC(p.year,p.month-1,p.day,12);const day=new Date(base).getUTCDay();let offset=(7-day)%7;const hoje21=Date.UTC(p.year,p.month-1,p.day,21,0,0)+3*3600000;if(offset===0 && Date.now()>=hoje21)offset=7;return new Date(hoje21+offset*86400000);}
+ function fmt(d){return new Intl.DateTimeFormat('pt-BR',{timeZone:TZ,day:'2-digit',month:'2-digit',year:'numeric'}).format(d);}
+ function duracao(sec){sec=Math.max(0,Math.floor(sec));const d=Math.floor(sec/86400),h=Math.floor(sec%86400/3600),m=Math.floor(sec%3600/60),s=sec%60;return (d?d+'d ':'')+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');}
+ function atualizar(){const agora=new Date();const domingo=domingo21();const hoje=fmt(agora);const rest=Math.max(0,1800-Math.floor((Date.now()-inicio)/1000));
+ document.querySelectorAll('.data-hoje').forEach(e=>e.textContent=hoje);
+ document.querySelectorAll('.data-domingo').forEach(e=>e.textContent=fmt(domingo));
+ document.querySelectorAll('.contador-hoje').forEach(e=>e.textContent=String(Math.floor(rest/60)).padStart(2,'0')+':'+String(rest%60).padStart(2,'0'));
+ document.querySelectorAll('.contador-domingo').forEach(e=>e.textContent=duracao((domingo.getTime()-Date.now())/1000));
+ const q=document.getElementById('quantidadeTitulosConfirmada');if(q&&typeof pacoteSelecionado!=='undefined'&&pacoteSelecionado)q.textContent=String(pacoteSelecionado.quantidade);
+ }
+ atualizar();setInterval(atualizar,1000);
+})();
+</script></body>
 </html>
