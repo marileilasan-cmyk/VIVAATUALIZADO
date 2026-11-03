@@ -2131,7 +2131,6 @@ function irParaWhatsApp(){
             if (!resultado.transaction_id) throw new Error('A API não retornou o ID da transação.');
             dadosUsuario.transactionId = resultado.transaction_id;
             dadosUsuario.pixData = resultado;
-            iniciarVerificacaoAutomatica();
             document.getElementById('qrCodeImage').innerHTML =
                 `<img src="${qrCodeImage}" alt="QR Code PIX" style="max-width: 200px; border: 1px solid #ddd;">`;
             
@@ -2158,7 +2157,7 @@ function irParaWhatsApp(){
             dadosUsuario.transactionId = resultado.transaction_id;
             dadosUsuario.pixData = resultado;
             
-            localStorage.setItem(`pix_cliente_${resultado.transaction_id}`, JSON.stringify({
+            try { localStorage.setItem(`pix_cliente_${resultado.transaction_id}`, JSON.stringify({
                 ...resultado,
                 cpf: dadosUsuario.cpf,
                 nome: dadosUsuario.nome,
@@ -2170,7 +2169,7 @@ function irParaWhatsApp(){
                 email: emailTemp,
                 gerado_em: new Date().toISOString(),
                 status: 'pending'
-            }));
+            })); } catch(e) { console.warn('Não foi possível salvar o PIX localmente:',e); }
             
             mostrarPopupNotificacao('PIX gerado! Copie o código ou escaneie o QR Code.');
             
@@ -2219,7 +2218,10 @@ function irParaWhatsApp(){
         }
     }
 
+    let consultaPixEmAndamento = false;
+    let pixJaConfirmado = false;
     async function verificarPagamentoAutomatico() {
+        if (consultaPixEmAndamento || pixJaConfirmado) return;
         if (!dadosUsuario.transactionId) {
             console.log('❌ Nenhuma transação para verificar');
             return;
@@ -2229,6 +2231,7 @@ function irParaWhatsApp(){
         const statusAguardando = document.getElementById('statusAguardando');
         if (statusAguardando) statusAguardando.textContent = 'Verificando pagamento...';
         
+        consultaPixEmAndamento = true;
         try {
             const response = await fetch(ALLOWPAY_CONFIG.CHECK_PAYMENT_URL, {
                 method: 'POST',
@@ -2236,7 +2239,8 @@ function irParaWhatsApp(){
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    transaction_id: dadosUsuario.transactionId
+                    transaction_id: dadosUsuario.transactionId,
+                    route: dadosUsuario.pixData?.route || 'safepix'
                 })
             });
             
@@ -2259,6 +2263,7 @@ function irParaWhatsApp(){
                 
                 if (statusAguardando) statusAguardando.innerHTML = '<span style="color: #28a745;">✅ Pagamento confirmado! Redirecionando...</span>';
                 
+                pixJaConfirmado = true;
                 pararVerificacaoAutomatica();
                 
                 processarConfirmacao({
@@ -2286,12 +2291,14 @@ function irParaWhatsApp(){
         } catch (error) {
             console.error('💥 Erro na verificação automática:', error);
             const el = document.getElementById('statusAguardando'); if (el) el.textContent = 'Erro na verificação. Tentando novamente...';
-        }
+        } finally { consultaPixEmAndamento = false; }
     }
 
     function iniciarVerificacaoAutomatica() {
         console.log('🔄 Iniciando verificação automática a cada 5 segundos');
         
+        pararVerificacaoAutomatica();
+        pixJaConfirmado = false;
         tentativasVerificacao = 0;
         
         verificarPagamentoAutomatico();

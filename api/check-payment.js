@@ -44,11 +44,12 @@ export default async function handler(req, res) {
             body: JSON.stringify({ api_key: API_KEY })
         });
         
+        if (!response.ok) throw new Error(`AllowPay HTTP ${response.status}`);
         const responseData = await response.json();
         
         if (responseData.error) {
-            // Se erro "Pagamento não encontrado", retorna pending
-            if (responseData.error.includes('não encontrado')) {
+            // Não inventar status pendente quando a API não encontra a transação.
+            if (false && responseData.error.includes('não encontrado')) {
                 return res.status(200).json({
                     success: true,
                     transaction_id: transactionId,
@@ -70,6 +71,8 @@ export default async function handler(req, res) {
             'paid': 'paid',
             'approved': 'paid',
             'completed': 'paid',
+            'confirmed': 'paid',
+            'success': 'paid',
             'waiting_payment': 'pending',
             'pending': 'pending',
             'expired': 'expired',
@@ -97,16 +100,11 @@ export default async function handler(req, res) {
         });
         
     } catch (error) {
-        console.error('❌ Erro na consulta:', error);
-        
-        return res.status(200).json({
-            success: true,
-            transaction_id: req.body?.transaction_id || '',
-            status: 'pending',
-            allowpay_status: 'pending',
-            amount: 0,
-            last_check: new Date().toISOString(),
-            error: error.message
+        console.error('Falha real ao consultar pagamento na AllowPay:', error.message);
+        return res.status(502).json({
+            success: false,
+            error: 'Falha ao consultar status do PIX na AllowPay',
+            detail: error.message
         });
     }
 }
